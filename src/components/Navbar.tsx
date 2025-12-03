@@ -6,7 +6,7 @@ export type Tab = "about" | "skills" | "projects" | "experience" | "education" |
 
 interface NavbarProps {
   current: Tab;
-  onChange: (t: Tab) => void;
+  onChange?: (t: Tab) => void;
 }
 
 const tabs: { key: Tab; label: string }[] = [
@@ -18,7 +18,15 @@ const tabs: { key: Tab; label: string }[] = [
   { key: "contact", label: "Contact" },
 ];
 
-const Navbar: React.FC<NavbarProps> = ({ current, onChange }) => {
+const handleScroll = (id: string) => {
+  const el = document.getElementById(id);
+  if (el) {
+    el.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+};
+
+
+const Navbar: React.FC<NavbarProps> = ({ current, onChange=handleScroll }) => {
   return (
     <header className="navbar" role="navigation" aria-label="Main navigation">
       <div className="brand">Pyke</div>

@@ -9,7 +9,8 @@ import ExperiencePreview from "../components/Previews/ExperiencePreview";
 import EducationPreview from "../components/Previews/EducationPreview";
 import ContactCTA from "../components/ContactCTA";
 import Navbar, { Tab } from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import Footer from "../components/Footer";
+import AboutPreview from "../components/Previews/AboutPreview/AboutPreview";
 
 
 /* const IndexPage: React.FC = () => {
@@ -30,7 +31,7 @@ export default function Home() {
   const [current, setCurrent] = useState<Tab>("about");
   return (
     <>
-      <Navbar current={current} onChange={setCurrent} />
+      
       <Head>
         <title>Pyke — Fullstack Engineer</title>
         <meta
@@ -38,6 +39,8 @@ export default function Home() {
           content="Pyke — Fullstack Engineer (React / TypeScript / Node). Portfolio & projects."
         />
       </Head>
+      
+      <Navbar current={current} />
 
       <main>
         {/* Hero */}
@@ -46,31 +49,12 @@ export default function Home() {
         </section>
 
         {/* About condensed */}
-        <section style={{ padding: "36px 28px" }} className="section-frame">
-          <div className="section theme-transition">
-            <div className="section-header">
-              <h2 className="section-title">À propos</h2>
-              <div className="muted">Bref aperçu</div>
-            </div>
-
-            <div className="section-content" style={{ marginTop: 12 }}>
-              <p className="muted">
-                Bonjour — je suis <strong>Pyke</strong>, ingénieur logiciel spécialisé dans les interfaces réactives,
-                les architectures robustes et les expériences utilisateur polies. J’aime le code propre, les transitions
-                fluides et les systèmes scalables.
-              </p>
-
-              <div style={{ marginTop: 12, textAlign: "right" }}>
-                <Link href="/about" className="button">
-                  En savoir plus
-                </Link>
-              </div>
-            </div>
-          </div>
+        <section id = "about"  style={{ padding: "36px 28px" }} className="section-frame">
+          <AboutPreview />
         </section>
 
         {/* Skills preview */}
-        <section style={{ padding: "36px 28px" }} className="section-frame">
+        <section id = "skills" style={{ padding: "36px 28px" }} className="section-frame">
           <SkillsPreview />
           <div style={{ marginTop: 12, textAlign: "right" }}>
             <Link href="/about" className="button">
@@ -80,7 +64,7 @@ export default function Home() {
         </section>
 
         {/* Projects preview */}
-        <section style={{ padding: "36px 28px" }} className="section-frame">
+        <section id = "projects" style={{ padding: "36px 28px" }} className="section-frame">
           <ProjectsPreview compact />
           <div style={{ marginTop: 12, textAlign: "right" }}>
             <Link href="/projects" className="button">
@@ -90,7 +74,7 @@ export default function Home() {
         </section>
 
         {/* Experience preview */}
-        <section style={{ padding: "36px 28px" }} className="section-frame">
+        <section id = "experience" style={{ padding: "36px 28px" }} className="section-frame">
           <ExperiencePreview />
           <div style={{ marginTop: 12, textAlign: "right" }}>
             <Link href="/experience" className="button">
@@ -100,7 +84,7 @@ export default function Home() {
         </section>
 
         {/* Education preview */}
-        <section style={{ padding: "36px 28px" }} className="section-frame">
+        <section id = "education" style={{ padding: "36px 28px" }} className="section-frame">
           <EducationPreview />
           <div style={{ marginTop: 12, textAlign: "right" }}>
             <Link href="/education" className="button">
@@ -110,7 +94,7 @@ export default function Home() {
         </section>
 
         {/* Contact CTA */}
-        <section style={{ padding: "48px 28px" }} className="section-frame">
+        <section id = "contact" style={{ padding: "48px 28px" }} className="section-frame">
           <ContactCTA />
         </section>
 

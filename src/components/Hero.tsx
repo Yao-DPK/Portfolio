@@ -23,7 +23,7 @@ const Hero: React.FC = () => {
 
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.35 }} style={{ marginTop: 22 }}>
           <div className="muted" style={{ fontSize: "0.95rem" }}>
-            Actuellement : Fullstack Developer — open to opportunities
+            Actuellement : Ingénieur Logiciel — open to opportunities
           </div>
         </motion.div>
       </div>

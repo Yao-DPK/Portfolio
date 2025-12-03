@@ -25,7 +25,7 @@ touch "$component_dir/$react_file"
 touch "$component_dir/$css_file"
 
 # Ajout du code dans le fichier .tsx
-echo "import './$css_file'
+echo "import styles from './$css_file'
 
 const $component_name = () => {
   return (
