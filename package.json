@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint", 
+    "create:component": "bash Scripts/create_react_component_folder.sh"
   },
   "dependencies": {
     "framer-motion": "^12.23.25",
