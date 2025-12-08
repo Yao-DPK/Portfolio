@@ -1,6 +1,7 @@
 // src/components/ProjectsPreview.tsx
 import React from "react";
 import { motion } from "framer-motion";
+import styles from "./ProjectPreviews.module.css"
 
 const projects = [
   {

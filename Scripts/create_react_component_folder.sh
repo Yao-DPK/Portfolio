@@ -9,7 +9,9 @@ component_parent="$2"
 project_root="$HOME/Documents/Projects/NextJS Tutorial/portfolio"
 components_folder="$project_root/src/components"
 react_file="$component_name.tsx"
-css_file="$component_name.css"
+css_file="$component_name.module.css"
+
+css_from_components="../styles/globals.css"
 
 # Création du dossier du composant
 if [ -z "$component_parent" ]; then
@@ -17,6 +19,17 @@ if [ -z "$component_parent" ]; then
     else
         component_dir="$components_folder/$component_parent/$component_name"
 fi
+
+path=$(realpath --relative-to="$project_root/src" "$component_dir")
+depth=$(grep -o "/" <<< "$path" | wc -l)
+global_css_import_string=""
+
+for ((i=0; i<depth; i++)); do
+    global_css_import_string+="../"
+done
+
+global_css_import_string+="$css_from_components"
+
 
 # Création du dossier du composant 
 mkdir -p "$component_dir"
@@ -33,7 +46,16 @@ const $component_name = () => {
   )
 }
 
+
 export default $component_name
 " > "$component_dir/$react_file"
+
+
+
+# Ajout du code dans le fichier .css
+echo "@import url('$global_css_import_string')
+" > "$component_dir/$css_file"
+
+
 
 echo "Composant $component_name créé avec succès dans : $component_dir"

@@ -1,0 +1,43 @@
+@import url('../../styles/globals.css');
+
+ /* =========================================================
+     NAVBAR
+     ========================================================= */
+     .navbar {
+        height: var(--navbar-height);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 2rem;
+        border-bottom: 1px solid var(--clr-border);
+        background: rgba(var(--clr-surface-rgb, 26,35,50), 0.6);
+        backdrop-filter: blur(8px);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        transition: none;
+      }
+      
+      .brand { color: var(--clr-primary); font-weight: 700; font-size: 1.1rem; letter-spacing: 0.6px; }
+      
+      /* Tabs / Nav links */
+      .tablist { display: flex; gap: 14px; align-items: center; }
+      .tabbutton {
+        background: transparent;
+        border: none;
+        padding: 8px 10px;
+        border-radius: 8px;
+        font-weight: 600;
+        color: var(--clr-text);
+        cursor: pointer;
+        opacity: 0.95;
+      }
+      .tabbutton:hover { transform: translateY(-2px); opacity: 1; }
+      
+      /* active look (if needed set class .is-active) */
+      .tabbutton.is-active {
+        background: rgba(var(--clr-primary-rgb),0.12);
+        color: var(--clr-primary);
+        box-shadow: var(--shadow-card);
+      }
+      

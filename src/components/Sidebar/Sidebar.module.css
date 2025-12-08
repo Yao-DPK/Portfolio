@@ -1,0 +1,77 @@
+@import url('../../styles/globals.css');
+
+.sidebar {
+  box-sizing: border-box;
+  height: calc(100vh - 4rem);
+  width: 20rem;
+  padding: 0.4rem 1em;
+  background-color: var(--clr-background);
+  border-right: 1px solid var(--clr-primary);
+  position: sticky;
+  top: 4rem;
+  overflow-y: auto;
+  transition: 300ms ease-in-out;
+  overflow: hidden;
+  text-wrap: nowrap;
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+}
+
+.sidebar svg {
+  fill: var(--clr-text);
+  flex-shrink: 0;
+}
+
+.sidebar li:hover {
+  background-color: rgba(var(--clr-primary-rgb), 0.08);
+}
+
+.close {
+  padding: 0.4rem;
+  width: 4rem;
+}
+
+.toggleBtn {
+  background: none;
+  margin-left: auto;
+  padding: 1em;
+  border: none;
+  border-radius: .5em;
+  cursor: pointer;
+}
+
+.toggleBtn:hover {
+  background-color: rgba(var(--clr-primary-rgb), 0.08);
+}
+
+.toggleBtn svg {
+  fill: var(--clr-text);
+  flex-shrink: 0;
+  transition: rotate 150ms ease;
+}
+
+.sidebar ul {
+  list-style: none;
+}
+
+.active a {
+  color: var(--clr-accent);
+}
+
+.sidebar li {
+  border-radius: .5em;
+  padding: .85em;
+  text-decoration: none;
+  color: var(--clr-text);
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  cursor: pointer;
+}
+
+
+
+.rotate svg {
+    rotate: -180deg;
+  }

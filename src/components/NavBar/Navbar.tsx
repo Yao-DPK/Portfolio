@@ -1,6 +1,7 @@
 // src/components/Navbar.tsx
 import React from "react";
-import ThemeToggle from "./ThemeToggle";
+import ThemeToggle from "../ThemeToggle";
+import styles from "./Navbar.module.css"
 
 export type Tab = "about" | "skills" | "projects" | "experience" | "education" | "contact";
 
@@ -28,13 +29,13 @@ const handleScroll = (id: string) => {
 
 const Navbar: React.FC<NavbarProps> = ({ current, onChange=handleScroll }) => {
   return (
-    <header className="navbar" role="navigation" aria-label="Main navigation">
-      <div className="brand">Pyke</div>
-      <div className="tablist" role="tablist" aria-label="Sections">
+    <header className={styles.navbar} role="navigation" aria-label="Main navigation">
+      <div className={styles.brand}>Pyke</div>
+      <div className={styles.tablist} role="tablist" aria-label="Sections">
         {tabs.map((t) => (
           <button
             key={t.key}
-            className="tabbutton"
+            className={styles.tabbutton}
             role="tab"
             aria-selected={current === t.key}
             aria-controls={`panel-${t.key}`}

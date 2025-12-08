@@ -1,8 +1,9 @@
 // src/components/Footer.tsx
 import React from "react";
+import styles from "./Footer.module.css"
 
 const Footer: React.FC = () => (
-  <footer style={{ padding: "20px 28px", textAlign: "center", color: "var(--clr-text)" }}>
+  <footer className={styles.footer}>
     <div className="muted">© {new Date().getFullYear()} Pyke — Built with Next.js</div>
   </footer>
 );

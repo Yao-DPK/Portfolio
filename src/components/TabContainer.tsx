@@ -1,7 +1,7 @@
 // src/components/TabContainer.tsx
 import React from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Tab } from "./Navbar";
+import { Tab } from "./NavBar/Navbar";
 import About from "./sections/About";
 import Skills from "./sections/Skills";
 import Projects from "./sections/Projects";
