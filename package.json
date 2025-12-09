@@ -6,12 +6,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint", 
+    "lint": "eslint",
     "create:component": "bash Scripts/create_react_component_folder.sh"
   },
   "dependencies": {
     "framer-motion": "^12.23.25",
-    "next": "16.0.6",
+    "next": "16.0.7",
     "react": "19.2.0",
     "react-dom": "19.2.0",
     "react-icons": "^5.5.0",
