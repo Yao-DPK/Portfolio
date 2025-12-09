@@ -2,8 +2,8 @@
 import Head from "next/head";
 import Link from "next/link";
 import React, { useState } from "react";
-import Hero from "../components/Hero";
-import SkillsPreview from "../components/Previews/SkillsPreview";
+import Hero from "../components/Hero/Hero";
+import SkillsPreview from "../components/Previews/SkillsPreview/SkillsPreview";
 import ProjectsPreview from "../components/Previews/ProjectsPreviews/ProjectsPreview";
 import ExperiencePreview from "../components/Previews/ExperiencePreview/ExperiencePreview";
 import EducationPreview from "../components/Previews/EducationPreview/EducationPreview";
@@ -12,6 +12,7 @@ import Navbar, { Tab } from "@/components/NavBar/Navbar";
 import Footer from "../components/Footer/Footer";
 import AboutPreview from "../components/Previews/AboutPreview/AboutPreview";
 import Sidebar from "@/components/Sidebar/Sidebar";
+import CTAPreview from "@/components/Previews/CTAPreview/CTAPreview";
 
 
 /* const IndexPage: React.FC = () => {
@@ -47,9 +48,9 @@ export default function Home() {
 
       <Navbar current={current} />
 
-      <div className="layout">
+      <div className="layout ">
         {/* <Sidebar/> */}
-        <main id="main-content">
+        <main>
         
           {/* Hero */}
           <section style={{ padding: "64px 28px" }} className="section-frame">
@@ -64,21 +65,13 @@ export default function Home() {
           {/* Skills preview */}
           <section id = "skills" style={{ padding: "36px 28px" }} className="section-frame">
             <SkillsPreview />
-            <div style={{ marginTop: 12, textAlign: "right" }}>
-              <Link href="/about" className="button">
-                Voir toutes les compétences
-              </Link>
-            </div>
+            
           </section>
 
           {/* Projects preview */}
           <section id = "projects" style={{ padding: "36px 28px" }} className="section-frame">
             <ProjectsPreview compact />
-            <div style={{ marginTop: 12, textAlign: "right" }}>
-              <Link href="/projects" className="button">
-                Voir tous les projets
-              </Link>
-            </div>
+            
           </section>
 
           {/* Experience preview */}
@@ -103,7 +96,7 @@ export default function Home() {
 
           {/* Contact CTA */}
           <section id = "contact" style={{ padding: "48px 28px" }} className="section-frame">
-            <ContactCTA />
+            <CTAPreview />
           </section>
 
           

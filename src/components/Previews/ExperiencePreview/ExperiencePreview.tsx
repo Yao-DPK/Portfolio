@@ -18,8 +18,8 @@ const experiences = [
 ];
 
 const ExperiencePreview: React.FC = () => (
-  <div className="section theme-transition">
-    <div className="section-header">
+  <div className="section ">
+    <div className="section-header theme-transition">
       <h2 className="section-title">Expérience</h2>
       <div className="muted">Parcours rapide</div>
     </div>

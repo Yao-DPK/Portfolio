@@ -1,60 +1,92 @@
-// src/components/ProjectsPreview.tsx
+"use client";
+
 import React from "react";
 import { motion } from "framer-motion";
-import styles from "./ProjectPreviews.module.css"
+import styles from "./ProjectsPreview.module.css";
+import { projects } from "../../../data/project"
+import Link from "next/link";
 
-const projects = [
-  {
-    title: "SkillTrackr",
-    desc: "Platform to create/manage projects, teams and realtime chat.",
-    image: "/images/skilltrackr.png",
-    tech: ["React", "Node", "Postgres"],
-    link: "/projects/skilltrackr"
+const cardVariants = {
+  hidden: { opacity: 0, y: 18 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { type: "spring" as const, stiffness: 200, damping: 20 },
   },
-  {
-    title: "JobInsight",
-    desc: "Analyze job postings and visualize required skills.",
-    image: "/images/jobinsight.png",
-    tech: ["Spring Boot", "React"],
-    link: "/projects/jobinsight"
-  },
-  {
-    title: "MusicSync",
-    desc: "Realtime multi-device music sync app.",
-    image: "/images/musicsync.png",
-    tech: ["Node", "WebSocket", "Flutter"],
-    link: "/projects/musicsync"
-  }
-];
+};
 
-const ProjectsPreview: React.FC<{ compact?: boolean }> = ({ compact = true }) => {
+export default function ProjectsPreview({ compact = true }) {
   const list = compact ? projects.slice(0, 3) : projects;
+
   return (
-    <div className="section theme-transition">
+    <div className="section">
       <div className="section-header">
         <h2 className="section-title">Projets</h2>
-        <div className="muted">Sélection de projets récents</div>
+        <div className="muted">Sélection professionnelle · Fullstack</div>
       </div>
 
-      <div className="section-content" style={{ marginTop: 12 }}>
-        <div className="cards">
-          {list.map((p) => (
-            <motion.div key={p.title} className="card" whileHover={{ y: -8, scale: 1.02 }} initial={{ opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-              {p.image && <img src={p.image} alt={p.title} style={{ width: "100%", borderRadius: 8, objectFit: "cover" }} />}
-              <h3 style={{ marginTop: 8 }}>{p.title}</h3>
-              <p className="muted">{p.desc}</p>
-              <div style={{ marginTop: 10, display: "flex", gap: 8, flexWrap: "wrap" }}>
-                {p.tech.map((t) => <span key={t} className="badge">{t}</span>)}
-              </div>
-              <div style={{ marginTop: 12 }}>
-                <a className="button" href={p.link}>Voir</a>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+      <motion.div
+        className={styles.grid}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.2 }}
+      >
+        {list.map((p) => (
+          <motion.div
+            key={p.title}
+            variants={cardVariants}
+            className={styles.card}
+            whileHover={{
+              scale: 1.01,
+              transition: { type: "spring", stiffness: 80 },
+            }}
+          >
+            {/* Image */}
+            <div className={styles.imageWrapper}>
+              <img src={p.images![0]} alt={p.title} />
+              <div className={styles.overlay} />
+            </div>
+
+            {/* Title */}
+            <h3 className={styles.title}>{p.title}</h3>
+            <p className={styles.desc}>{p.prev_desc}</p>
+
+            {/* Tech badges */}
+            <div className={styles.techList}>
+              {p.tech.map((t) => (
+                <span key={t} className="badge">
+                  {t}
+                </span>
+              ))}
+            </div>
+
+            {/* CTA */}
+            <div className={styles.cta}>
+              {p.status === "ready" ? 
+               (
+                <Link href={p.link!} className="button">
+                Voir le projet
+                </Link> 
+               ): 
+               (
+                <Link href="#" className={`button ${styles.disabled}`}>
+                Bientôt
+                </Link>  
+               )
+              }
+              
+            </div>
+            
+          </motion.div>
+        ))}
+      </motion.div>
+
+      {/* More */}
+      <div className={styles.more}>
+        <Link href="/projects" className="button">
+          Voir tous les projets
+        </Link>
       </div>
     </div>
   );
-};
-
-export default ProjectsPreview;
+}

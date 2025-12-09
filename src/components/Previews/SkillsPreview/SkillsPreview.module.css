@@ -1,0 +1,94 @@
+.section {
+    padding: 32px 0;
+  }
+  
+  .header {
+    margin-bottom: 20px;
+  }
+  
+  .title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0;
+  }
+  
+  .subtitle {
+    color: var(--muted);
+    margin-top: 4px;
+  }
+  
+  .blockLabel {
+    font-weight: 600;
+    color: var(--muted);
+    margin: 18px 0 10px;
+  }
+  
+  /* GRID */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+    gap: 14px;
+    margin-bottom: 24px;
+  }
+  
+  .gridWide {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+  
+  /* CARD (glassmorphism amélioré) */
+  .card {
+    padding: 14px 16px;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+    transition: box-shadow 0.3s ease, transform 0.25s ease;
+  }
+  
+  .card:hover {
+    box-shadow: 0 12px 24px rgba(0,0,0,0.35);
+  }
+  
+  .cardTitle {
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  
+  .cardHint,
+  .cardList,
+  .cardListItem {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.45;
+  }
+  
+  .ul {
+    margin: 0;
+    padding-left: 18px;
+  }
+  
+  /* MORE BUTTON */
+  .more {
+    text-align: right;
+    margin-top: 1rem;
+  }
+  
+  .button {
+    padding: 8px 16px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    text-decoration: none;
+    font-weight: 600;
+    transition: background 0.3s, transform 0.25s;
+  }
+  
+  .button:hover {
+    background: rgba(255, 255, 255, 0.14);
+    transform: translateY(-2px);
+  }
+  

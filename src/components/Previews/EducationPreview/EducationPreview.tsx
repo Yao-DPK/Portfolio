@@ -12,7 +12,7 @@ const educ = [
 ];
 
 const EducationPreview: React.FC = () => (
-  <div className="section theme-transition">
+  <div className="section">
     <div className="section-header">
       <h2 className="section-title">Formation</h2>
       <div className="muted">Parcours académique</div>
