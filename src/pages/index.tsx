@@ -15,20 +15,6 @@ import Sidebar from "@/components/Sidebar/Sidebar";
 import CTAPreview from "@/components/Previews/CTAPreview/CTAPreview";
 
 
-/* const IndexPage: React.FC = () => {
-  const [current, setCurrent] = useState<Tab>("about");
-
-  return (
-    <div className="app-shell">
-      <Navbar current={current} onChange={setCurrent} />
-      <TabContainer current={current} />
-    </div>
-  );
-};
-
-export default IndexPage;
- */
-
 export default function Home() {
   const [current, setCurrent] = useState<Tab>("about");
   const [isClosed, setIsClosed] = useState(false);
@@ -47,62 +33,50 @@ export default function Home() {
 
 
       <Navbar current={current} />
-
-      <div className="layout ">
         {/* <Sidebar/> */}
         <main>
         
           {/* Hero */}
-          <section style={{ padding: "64px 28px" }} className="section-frame">
+          <section className="section-frame">
             <Hero />
           </section>
 
           {/* About condensed */}
-          <section id = "about"  style={{ padding: "36px 28px" }} className="section-frame">
+          <section id = "about" className="section-frame">
             <AboutPreview />
           </section>
 
           {/* Skills preview */}
-          <section id = "skills" style={{ padding: "36px 28px" }} className="section-frame">
+          <section id = "skills" className="section-frame">
             <SkillsPreview />
             
           </section>
 
           {/* Projects preview */}
-          <section id = "projects" style={{ padding: "36px 28px" }} className="section-frame">
+          <section id = "projects" className="section-frame">
             <ProjectsPreview compact />
             
           </section>
 
           {/* Experience preview */}
-          <section id = "experience" style={{ padding: "36px 28px" }} className="section-frame">
+          <section id = "experience" className="section-frame">
             <ExperiencePreview />
-            <div style={{ marginTop: 12, textAlign: "right" }}>
-              <Link href="/experience" className="button">
-                Voir l'expérience complète
-              </Link>
-            </div>
+            
           </section>
 
           {/* Education preview */}
-          <section id = "education" style={{ padding: "36px 28px" }} className="section-frame">
+          <section id = "education" className="section-frame">
             <EducationPreview />
-            <div style={{ marginTop: 12, textAlign: "right" }}>
-              <Link href="/education" className="button">
-                Détails formation
-              </Link>
-            </div>
+            
           </section>
 
           {/* Contact CTA */}
-          <section id = "contact" style={{ padding: "48px 28px" }} className="section-frame">
+          <section id = "contact" className="section-frame">
             <CTAPreview />
           </section>
 
           
         </main>
-      </div>
-
       <Footer></Footer>
     </>
   );

@@ -19,6 +19,10 @@
   }
   
   .card {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* ou space-between si tu veux que le bouton reste en bas */
+    padding: 1rem;
     background: linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
     border: 1px solid rgba(255,255,255,0.1);
     border-radius: 14px;
@@ -82,7 +86,7 @@
     flex-wrap: wrap;
     gap: 0.5rem;
     margin-top: 0.8rem;
-    margin-bottom: 0.8rem;
+    margin-bottom: 1rem;
   }
   
   .badge {
@@ -109,9 +113,7 @@
 
   .cta{
     text-align: right;
-    position: absolute;
-    bottom: 10;
-    right: 10;
+    margin-top: auto;
   }
   
   .disabled {

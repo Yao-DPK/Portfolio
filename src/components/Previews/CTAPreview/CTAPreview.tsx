@@ -1,30 +1,56 @@
 import React from "react";
-import Link from "next/link";
 import { motion } from "framer-motion";
+import styles from "./CTAPreview.module.css";
 
 const CTAPreview: React.FC = () => (
-  <div className="section ">
+  <section className="section">
     <div className="section-header">
       <h2 className="section-title">Contact</h2>
       <div className="muted">Discutons d’un projet ou d’une opportunité</div>
     </div>
 
-    <div className="section-content" style={{ marginTop: 12, display: "flex", gap: 20, alignItems: "center", flexWrap: "wrap" }}>
-      <div style={{ flex: 1, minWidth: 260 }}>
-        <h3 style={{ margin: 0 }}>Prêt à collaborer ?</h3>
-        <p className="muted" style={{ marginTop: 8 }}>
-          Si tu as un projet ou une mission — envoie un message ou réserve un créneau. Je réponds rapidement.
+    <motion.div
+      className={styles.content}
+      initial={{ opacity: 0, y: 12 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.4 }}
+    >
+      <div className={styles.text}>
+        <h3 className={styles.heading}>Prêt à collaborer ?</h3>
+        <p className={styles.description}>
+          Si tu veux échanger, tu peux m’envoyer un email ou visiter mes profils GitHub et LinkedIn.
         </p>
       </div>
 
-      <div style={{ display: "flex", gap: 12 }}>
-        <Link href="/contact" className="button">Me contacter</Link>
-        <a className="button" href="/cv.pdf" target="_blank" rel="noopener noreferrer" style={{ background: "linear-gradient(90deg,#735BFF,#4169E1)" }}>
-          Télécharger CV
+      <div className={styles.buttons}>
+        <a
+          href="mailto:yao.konan2709@gmail.com"
+          className="button"
+        >
+          Email
+        </a>
+        <a
+          href="https://github.com/Yao-DPK"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="button"
+          style={{ background: "linear-gradient(90deg,#333,#6e5494)" }}
+        >
+          GitHub
+        </a>
+        <a
+          href="https://www.linkedin.com/in/yaokonan"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="button"
+          style={{ background: "linear-gradient(90deg,#0a66c2,#0072b1)" }}
+        >
+          LinkedIn
         </a>
       </div>
-    </div>
-  </div>
+    </motion.div>
+  </section>
 );
 
 export default CTAPreview;

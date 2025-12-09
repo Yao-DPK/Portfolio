@@ -23,15 +23,15 @@ const AboutPreview = () => {
         <p className="muted" style={{ marginTop: 10, lineHeight: 1.55 }}>
           Aujourd’hui, je travaille surtout sur{" "}
           <strong>React / Next.js</strong>, <strong>Node.js</strong> et les bases de données
-          (<strong>PostgreSQL</strong>, <strong>MongoDB</strong>), avec un intérêt marqué pour
+          (<strong>PostgreSQL</strong>, <strong>MySQL</strong>), avec un intérêt marqué pour
           le design system, le realtime et les architectures modulaires.
         </p>
 
         {/* OPTIONAL placeholders */}
         <p className="muted" style={{ marginTop: 10, lineHeight: 1.55 }}>
           {/* ➤ Remplace par ton ambition si tu veux */}
-          <em>(Placeholder) Actuellement, je me concentre sur : XX — que ce soit pour apprendre,
-          consolider ou approfondir mes compétences.</em>
+          {/* <em>(Placeholder) Actuellement, je me concentre sur : XX — que ce soit pour apprendre,
+          consolider ou approfondir mes compétences.</em> */}
         </p>
 
         <div style={{ marginTop: 16, textAlign: "right" }}>

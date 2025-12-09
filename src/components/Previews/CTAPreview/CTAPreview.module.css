@@ -1,2 +1,55 @@
-@import url('../../../styles/globals.css')
+@import url('../../../styles/globals.css');
 
+  
+.content {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .text {
+    flex: 1;
+    min-width: 260px;
+  }
+  
+  .heading {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+  
+  .description {
+    margin-top: 8px;
+    font-size: 0.95rem;
+    color: var(--clr-text-muted);
+    line-height: 1.4;
+  }
+  
+  .buttons {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 640px) {
+    .title {
+      font-size: 1.5rem;
+    }
+  
+    .heading {
+      font-size: 1.1rem;
+    }
+  
+    .description {
+      font-size: 0.9rem;
+    }
+  
+    .buttons {
+      justify-content: center;
+      width: 100%;
+    }
+  }
+  

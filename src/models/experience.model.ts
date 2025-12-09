@@ -5,6 +5,7 @@ export interface Experience {
   period: string;                  // Période, ex: "Jan 2023 – Present"
   type?: "CDI" | "Freelance" | "Stage" | "Contract"; // Type de mission
   location?: string;               // Lieu (ex: "Remote", "Paris, France")
+  short: string;
   description: string[];           // Points clés / réalisations
   tech?: string[];                 // Technologies ou compétences utilisées
   logo?: string;                   // URL du logo de l’entreprise

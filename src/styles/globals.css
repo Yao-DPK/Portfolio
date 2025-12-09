@@ -90,11 +90,9 @@
      RESET & BASE
      ========================================================= */
   * { box-sizing: border-box; }
-  html, body, #__next { min-height: 100dvh; }
+  html, body, #__next {  }
   body {
-    
-    min-height: 100vh;
-    min-height: 100dvh;
+    position: relative;
     margin: 0;
     background: rgb(var(--clr-background-rgb));
     color: var(--clr-text);
@@ -102,8 +100,9 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     -webkit-text-size-adjust: 100%;
-    line-height: 1.5;
     -webkit-font-kerning: normal;
+    line-height: 1.5;
+    
   }
   
   html {
@@ -114,7 +113,7 @@
   body::before,
   body::after {
     content: "";
-    position: fixed;
+    position: absolute;
     inset: 0;
     z-index: -2;
     pointer-events: none;
@@ -332,6 +331,29 @@
     .section-header { padding: 8px; position: sticky; top: 0; }
   }
   
+  @media (max-width: 600px) {
+    .section {
+      padding: 1rem;
+      border-radius: 0.7rem;
+    }
+  
+    .section-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 4px;
+    }
+  
+    .section-title {
+      font-size: 1.4rem;
+    }
+  }
+
+  @media (max-width: 600px) {
+    :root {
+      --shadow-strong: 0 8px 20px rgba(0,0,0,0.25);
+      --shadow-card: 0 4px 12px rgba(0,0,0,0.15);
+    }
+  }
   /* =========================================================
      Utility classes
      ========================================================= */

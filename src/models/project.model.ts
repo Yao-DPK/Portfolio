@@ -1,6 +1,6 @@
 export interface Project{
     title: string;
-    prev_desc: string;
+    short: string;
     desc?: string;
     images?: string[];
     tech: string[];

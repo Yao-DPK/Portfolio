@@ -49,7 +49,7 @@ export default function ProjectsPreview({ compact = true }) {
 
             {/* Title */}
             <h3 className={styles.title}>{p.title}</h3>
-            <p className={styles.desc}>{p.prev_desc}</p>
+            <p className={styles.desc}>{p.short}</p>
 
             {/* Tech badges */}
             <div className={styles.techList}>
@@ -59,6 +59,7 @@ export default function ProjectsPreview({ compact = true }) {
                 </span>
               ))}
             </div>
+
 
             {/* CTA */}
             <div className={styles.cta}>
@@ -82,11 +83,11 @@ export default function ProjectsPreview({ compact = true }) {
       </motion.div>
 
       {/* More */}
-      <div className={styles.more}>
+      {/* <div className={styles.more}>
         <Link href="/projects" className="button">
           Voir tous les projets
         </Link>
-      </div>
+      </div> */}
     </div>
   );
 }

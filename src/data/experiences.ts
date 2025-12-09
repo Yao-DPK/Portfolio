@@ -3,25 +3,27 @@ import { Experience } from "../models/experience.model";
 
 export const experiences: Experience[] = [
   {
-    company: "Bending Spoons",
-    role: "Fullstack Developer",
-    period: "Jun 2024 – Present",
+    company: "ID Protect",
+    role: "Ingénieur Logiciel",
+    period: "03/2025 – 09/2025",
+    short: "Développement de fonctionnalités SaaS en Node.js & React (auth, interfaces, API).",
     description: [
-      "Developed scalable web applications in React + Node.js",
-      "Optimized performance and reduced bundle size by 30%",
-      "Implemented CI/CD pipelines and automated testing"
+      "Développement de fonctionnalités SaaS en Node.js & React (auth, interfaces, API).",
+      "Implémentation d’un pipeline CI/CD (–15% temps de déploiement)",
+      "Contribution à un POC IA et à l’intégration d’API externes(OpenAI, RevenueCat)"
     ],
     logo: "/logos/bending-spoons.png",
     color: "#4169E1"
   },
   {
-    company: "Jarvi",
-    role: "Fullstack Intern",
-    period: "Jan 2024 – May 2024",
+    company: "Linking Industri et Developpement",
+    role: "Développeur Fullstack",
+    period: "06/2024 – 09/2024",
+    short: "Développement Web & mobile .",
     description: [
-      "Built dashboard modules for recruiters",
-      "Integrated third-party APIs",
-      "Improved frontend accessibility and UX"
+      "Refonte d’un site client (HTML/CSS/JS)",
+      "Développement Web & mobile ",
+      "Déploiement et maintenance sur OVHCloud."
     ],
     logo: "/logos/jarvi.png",
     color: "#735BFF"

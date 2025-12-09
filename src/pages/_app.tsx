@@ -2,14 +2,21 @@ import type { AppProps } from "next/app";
 import { ThemeProvider } from "../context/ThemeContext";
 import "../styles/globals.css";
 import Loader from "@/components/Loader";
+import  Head  from "next/head";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <ThemeProvider>
+    <>
+      <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </Head>
 
-      {/* <Loader /> */}
-      <Component {...pageProps} />
-    </ThemeProvider>
+      <ThemeProvider>
+        {/* <Loader /> */}
+        <Component {...pageProps} />
+      </ThemeProvider>
+    </>
+    
   );
 }
 

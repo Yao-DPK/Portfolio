@@ -131,11 +131,11 @@ const SkillsPreview: React.FC = () => {
       </div>
 
       {/* More */}
-      <div className={styles.more}>
+      {/* <div className={styles.more}>
         <Link href="/skills" className="button">
           Voir toutes mes compétences
         </Link>
-      </div>
+      </div> */}
     </div>
   );
 };
