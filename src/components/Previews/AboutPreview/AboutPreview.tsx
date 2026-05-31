@@ -88,14 +88,14 @@ const AboutPreview = () => {
         </motion.div>
 
         {/* Call to action */}
-        <motion.div variants={itemVariants} className={styles.ctaWrapper}>
+        {/* <motion.div variants={itemVariants} className={styles.ctaWrapper}>
           <Link href="/about" className={styles.button}>
             <span>En savoir plus</span>
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M5 12h14M12 5l7 7-7 7"/>
             </svg>
           </Link>
-        </motion.div>
+        </motion.div> */}
       </div>
     </motion.div>
   );

@@ -100,7 +100,7 @@ const ExperiencePreview: React.FC = () => {
               </div>
             )} */}
             
-            <div className={styles.cta}>
+            {/* <div className={styles.cta}>
               <motion.a
                 href="/experience"
                 className={styles.button}
@@ -112,7 +112,7 @@ const ExperiencePreview: React.FC = () => {
                   <path d="M5 12h14M12 5l7 7-7 7"/>
                 </svg>
               </motion.a>
-            </div>
+            </div> */}
           </motion.div>
         ))}
       </div>

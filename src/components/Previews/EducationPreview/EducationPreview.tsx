@@ -93,7 +93,7 @@ const EducationPreview: React.FC = () => {
             
             <p className={styles.description}>{education.short}</p>
             
-            <div className={styles.cta}>
+            {/* <div className={styles.cta}>
               <motion.a
                 href="/education"
                 className={styles.button}
@@ -105,7 +105,7 @@ const EducationPreview: React.FC = () => {
                   <path d="M5 12h14M12 5l7 7-7 7"/>
                 </svg>
               </motion.a>
-            </div>
+            </div> */}
           </motion.div>
         ))}
       </div>
