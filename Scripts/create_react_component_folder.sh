@@ -1,12 +1,12 @@
 #!/bin/bash
 
+script_directory=$(dirname "$(readlink -f "$0")")
 
 component_name="$1"
 
 component_parent="$2"
 
-
-project_root="$HOME/Documents/Projects/NextJS Tutorial/portfolio"
+project_root=$PWD
 components_folder="$project_root/src/components"
 react_file="$component_name.tsx"
 css_file="$component_name.module.css"

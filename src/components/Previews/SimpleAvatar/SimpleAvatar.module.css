@@ -1,0 +1,48 @@
+/* Ajoutez ceci au SimpleAvatar.module.css */
+
+.imageWrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+  
+  .gradientBorder {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 2px;
+    background: linear-gradient(135deg, var(--clr-primary), var(--clr-secondary));
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity var(--transition-normal);
+    z-index: 3;
+  }
+  
+  .avatarContainer:hover .gradientBorder {
+    opacity: 1;
+  }
+  
+  .shineEffect {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.2),
+      transparent
+    );
+    transform: skewX(-20deg);
+    transition: left var(--transition-slow);
+    pointer-events: none;
+    z-index: 4;
+  }
+  
+  .avatarContainer:hover .shineEffect {
+    left: 150%;
+  }

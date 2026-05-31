@@ -21,7 +21,7 @@ export const projects : Project[] = [
     title: "Association Manager · Microservices",
     short: "Application web modulaire pour gérer associations, projets, équipes et documents, basée sur NestJS + Angular.",
     images: ["/assets/images/association.png"],
-    tech: ["NestJS", "Angular", "PostgreSQL", "CI/CD", "Docker"],
+    tech: ["NestJS", "Angular", "PostgreSQL", "Docker"],
     link: "/projects/association-platform",
     status: "coming-soon"
   },
