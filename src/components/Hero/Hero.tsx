@@ -75,15 +75,12 @@ const Hero: React.FC = () => {
         </motion.h1>
 
         <motion.div className={styles.role} variants={itemVariants}>
-          <span className={styles.roleText}>Ingénieur Logiciel Fullstack</span>
+          <span className={styles.roleText}>Ingénieur Logiciel</span>
           <div className={styles.roleIndicator} />
         </motion.div>
 
         <motion.p className={styles.tagline} variants={itemVariants}>
-          Je conçois des applications réactives, scalables et robustes grâce à{" "}
-          <strong className={styles.highlight}>TypeScript</strong>,{" "}
-          <strong className={styles.highlight}>React / Angular</strong>,{" "}
-          <strong className={styles.highlight}>Node.js</strong>{" "}
+          Je conçois des applications réactives, scalables et robustes grâce à
           et des architectures propres et maintenables.
         </motion.p>
 
@@ -120,8 +117,8 @@ const Hero: React.FC = () => {
           <span> — Ouvert aux opportunités</span>
         </motion.div>
 
-        <motion.div className={styles.techStack} variants={itemVariants}>
-          {["React", "TypeScript", "Node.js", "Next.js", "Angular"].map((tech, i) => (
+        {/* <motion.div className={styles.techStack} variants={itemVariants}>
+          {["React", "TypeScript", "Node.js", "Next.js", "Angular", "FastAPI"].map((tech, i) => (
             <motion.span
               key={tech}
               className={styles.techTag}
@@ -133,7 +130,7 @@ const Hero: React.FC = () => {
               {tech}
             </motion.span>
           ))}
-        </motion.div>
+        </motion.div> */}
       </motion.div>
 
       <motion.aside

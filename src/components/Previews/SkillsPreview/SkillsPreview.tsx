@@ -4,7 +4,7 @@ import Link from "next/link";
 import styles from "./SkillsPreview.module.css";
 
 const topSkills = [
-  { name: "TypeScript", hint: "Primary language", icon: "⚡" },
+  { name: "TypeScript", hint: "Langage Principal", icon: "⚡" },
   { name: "React / Next.js", hint: "UI & SSR", icon: "⚛️" },
   { name: "Node.js", hint: "APIs & backend", icon: "🚀" },
   { name: "PostgreSQL", hint: "Schema design", icon: "🗄️" },
@@ -20,13 +20,13 @@ const categories = [
   {
     label: "Backend",
     icon: "⚙️",
-    items: ["Node.js", "NestJS", "Express", "REST", "WebSockets"],
+    items: ["Node.js", "Nest.js", "Express", "FastAPI"],
     gradient: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)"
   },
   {
     label: "Databases",
     icon: "💾",
-    items: ["PostgreSQL", "MongoDB", "MySQL"],
+    items: ["PostgreSQL", "MySQL"],
     gradient: "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)"
   },
   {
@@ -38,7 +38,7 @@ const categories = [
   {
     label: "Mobile",
     icon: "📱",
-    items: ["Flutter (BLoC)", "React Native"],
+    items: ["Flutter", "React Native"],
     gradient: "linear-gradient(135deg, #fa709a 0%, #fee140 100%)"
   },
 ];

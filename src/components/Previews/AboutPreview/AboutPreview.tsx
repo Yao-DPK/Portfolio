@@ -24,9 +24,9 @@ const AboutPreview = () => {
   };
 
   const stats = [
-    { value: "4+", label: "Années d'expérience" },
-    { value: "15+", label: "Projets réalisés" },
-    { value: "10+", label: "Clients satisfaits" },
+    { value: "2+", label: "Années d'expérience" },
+    { value: "5+", label: "Projets réalisés" },
+    //{ value: "10+", label: "Clients satisfaits" },
   ];
 
   return (
@@ -65,7 +65,7 @@ const AboutPreview = () => {
           <p className={styles.paragraph}>
             Aujourd’hui, je travaille surtout sur{" "}
             <strong className={styles.highlight}>React / Next.js</strong>,{" "}
-            <strong className={styles.highlight}>Node.js</strong> et les bases de données
+            <strong className={styles.highlight}>Nest.js</strong> et les bases de données
             (<strong className={styles.highlight}>PostgreSQL</strong>,{" "}
             <strong className={styles.highlight}>MySQL</strong>), avec un intérêt marqué pour
             le design system, le realtime et les architectures modulaires.
