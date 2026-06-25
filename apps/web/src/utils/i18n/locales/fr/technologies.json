@@ -1,0 +1,44 @@
+{
+  "title": "Technologies que j'utilise",
+  "description": "Un aperçu de mon expertise technique",
+  "categories": {
+    "frontend": {
+      "name": "Frontend",
+      "description": "Interfaces utilisateur réactives"
+    },
+    "backend": {
+      "name": "Backend",
+      "description": "APIs & services robustes"
+    },
+    "database": {
+      "name": "Base de données",
+      "description": "Gestion et modélisation des données"
+    },
+    "devops": {
+      "name": "DevOps & Outils",
+      "description": "Déploiement et infrastructure"
+    },
+    "mobile": {
+      "name": "Mobile",
+      "description": "Applications cross-platform"
+    }
+  },
+  "items": {
+    "react": "React",
+    "nextjs": "Next.js",
+    "angular": "Angular",
+    "tailwind": "Tailwind CSS",
+    "nodejs": "Node.js",
+    "nestjs": "NestJS",
+    "express": "Express",
+    "fastapi": "FastAPI",
+    "postgresql": "PostgreSQL",
+    "mysql": "MySQL",
+    "docker": "Docker",
+    "github": "GitHub Actions",
+    "linux": "Linux",
+    "websockets": "WebSockets",
+    "flutter": "Flutter",
+    "reactnative": "React Native"
+  }
+}

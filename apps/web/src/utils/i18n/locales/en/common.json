@@ -1,0 +1,11 @@
+{
+  "navigation": {
+    "home": "Home",
+    "projects": "Projects",
+    "experience": "Experience",
+    "contact": "Contact"
+  },
+  "language": {
+    "switch": "Switch language"
+  }
+}

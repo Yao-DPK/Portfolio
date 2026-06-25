@@ -1,0 +1,35 @@
+{
+  "title": "Projets réalisés",
+  "items": [
+    {
+      "title": "Assistant IA · SaaS",
+      "description": "Assistant IA intégré dans un produit web et mobile avec WebSockets temps réel.",
+      "details": [
+        "Pipeline complet : préparation de la requête → appel API → transformation de la réponse → rendu final.",
+        "Communication temps réel via WebSockets (Node.js ↔ React ↔ Flutter).",
+        "Design UX avec Figma, gestion des erreurs, timeouts, et streaming partiel."
+      ],
+      "tags": ["React", "Node.js", "TypeScript", "WebSockets", "OpenAI"]
+    },
+    {
+      "title": "Feedback IA · Angular",
+      "description": "Application Angular connectée à une API FastAPI pour afficher des prédictions IA et collecter des feedbacks.",
+      "details": [
+        "Interface utilisateur pour l'affichage des prédictions et la collecte de feedback.",
+        "API robuste avec FastAPI et PostgreSQL.",
+        "Containerisation avec Docker pour un déploiement facile."
+      ],
+      "tags": ["Angular", "FastAPI", "PostgreSQL", "Docker"]
+    },
+    {
+      "title": "Association Manager · Microservices",
+      "description": "Application web modulaire pour gérer associations, projets, équipes et documents.",
+      "details": [
+        "Développé avec NestJS et Angular, suivant une architecture microservices.",
+        "Gestion des rôles et des documents.",
+        "Persistance des données avec PostgreSQL et containerisation Docker."
+      ],
+      "tags": ["NestJS", "Angular", "PostgreSQL", "Docker"]
+    }
+  ]
+}

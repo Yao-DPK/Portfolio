@@ -1,0 +1,35 @@
+{
+  "title": "Things I've built",
+  "items": [
+    {
+      "title": "AI Assistant · SaaS",
+      "description": "AI assistant integrated directly into a web and mobile product.",
+      "details": [
+        "Full pipeline: request preparation → API call → response transformation → final UI rendering.",
+        "Real-time communication via WebSockets (Node.js ↔ React ↔ Flutter).",
+        "UX design with Figma, error handling, timeouts, and partial streaming."
+      ],
+      "tags": ["React", "Node.js", "TypeScript", "WebSockets", "OpenAI"]
+    },
+    {
+      "title": "Feedback IA · Angular",
+      "description": "Angular application connected to a FastAPI to display AI predictions and collect user feedback.",
+      "details": [
+        "Designed a clean UI for prediction display and feedback collection.",
+        "Built a robust API with FastAPI and PostgreSQL.",
+        "Containerized the application with Docker for easy deployment."
+      ],
+      "tags": ["Angular", "FastAPI", "PostgreSQL", "Docker"]
+    },
+    {
+      "title": "Association Manager · Microservices",
+      "description": "Modular web application to manage associations, projects, teams, and documents.",
+      "details": [
+        "Developed with NestJS and Angular, following a microservices architecture.",
+        "Implemented role-based access control and document management.",
+        "Used PostgreSQL for data persistence and Docker for containerization."
+      ],
+      "tags": ["NestJS", "Angular", "PostgreSQL", "Docker"]
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "title": "📬 Restons en contact",
+  "description": "Que ce soit pour un projet passionnant, une opportunité professionnelle ou simplement pour échanger, je serais ravi de discuter avec vous.",
+  "form": {
+    "name": "Votre nom",
+    "namePlaceholder": "Jean Dupont",
+    "email": "Votre email",
+    "emailPlaceholder": "jean.dupont@email.com",
+    "subject": "Sujet",
+    "subjectPlaceholder": "Demande de collaboration",
+    "message": "Message",
+    "messagePlaceholder": "Décrivez votre projet ou votre message ici...",
+    "submit": "Envoyer le message",
+    "sending": "Envoi en cours...",
+    "success": "✅ Message envoyé avec succès ! Je vous répondrai dans les 24h.",
+    "error": "❌ Une erreur est survenue. Veuillez réessayer ou m'envoyer un email directement.",
+    "required": "Ce champ est requis",
+    "invalidEmail": "Veuillez entrer une adresse email valide",
+    "minLength": "Minimum {{count}} caractères"
+  },
+  "info": {
+    "email": "yao.konan2709@gmail.com",
+    "github": "https://github.com/Yao-DPK",
+    "linkedin": "https://www.linkedin.com/in/yaokonan/",
+    "availability": "Disponible pour des opportunités"
+  }
+}

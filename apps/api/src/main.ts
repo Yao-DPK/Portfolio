@@ -1,0 +1,61 @@
+import { NestFactory } from '@nestjs/core';
+import { AppModule } from './app.module';
+import cors from 'cors';
+import express from 'express'
+import { ExpressAdapter } from '@nestjs/platform-express';
+
+async function bootstrap() {
+  const expressApp = express();
+  const app = await NestFactory.create(
+    AppModule,
+    new ExpressAdapter(expressApp)
+  );
+
+  app.use((req, res, next) => {
+    console.log(`📥 Incoming ${req.method} ${req.url} from ${req.headers.origin}`);
+    next();
+  });
+
+  const allowedOrigins: any = [];
+    if (process.env.ALLOWED_ORIGINS){
+      const ALLOWED_ORIGINS_LIST = process.env.ALLOWED_ORIGINS.split(',');
+      for (let idx=0; idx < ALLOWED_ORIGINS_LIST.length; idx++ ){
+        const o = ALLOWED_ORIGINS_LIST[idx];
+        allowedOrigins.push(o);
+      }
+    }
+
+  app.use(
+    cors({
+      origin: (origin, callback) => {
+        if (
+          !origin ||
+          allowedOrigins.some(
+            (validOrigin) =>
+              validOrigin === origin || origin.match(validOrigin),
+          )
+        ) {
+          callback(null, true);
+        } else {
+          callback(new Error('Not allowed by CORS'));
+        }
+      },
+      credentials: true,
+      methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
+      allowedHeaders: ['Content-Type', 'Authorization', 'Accept', 'Cookie'],
+    }),
+  );
+
+  app.setGlobalPrefix('api');
+
+
+  const port = process.env.PORT || 3032;
+    app.listen(port, () => {
+      console.log(`Server running on http://localhost:${port}`);
+    });
+  
+  await app.init();
+  return expressApp;
+
+}
+bootstrap();

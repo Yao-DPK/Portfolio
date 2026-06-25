@@ -1,0 +1,11 @@
+{
+  "badge": "Open to opportunities",
+  "title": "Yao Konan.",
+  "subtitle": "Fullstack Software Engineer",
+  "description": "I design reactive web applications and robust backend architectures, turning complex needs into simple, efficient, and maintainable solutions. Currently seeking my first opportunity as a software engineer.",
+  "cta": {
+    "projects": "View my projects",
+    "contact": "Contact me",
+    "resume": "Download my resume"
+  }
+}

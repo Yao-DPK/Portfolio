@@ -1,0 +1,11 @@
+{
+  "badge": "Ouvert aux opportunités",
+  "title": "Yao Konan.",
+  "subtitle": "Ingénieur Logiciel Fullstack",
+  "description": "Je conçois des applications web réactives et des architectures backend robustes, en transformant des besoins complexes en solutions simples, efficaces et maintenables. Actuellement à la recherche de ma première opportunité en tant qu'ingénieur logiciel.",
+  "cta": {
+    "projects": "Voir mes projets",
+    "contact": "Me contacter",
+    "resume": "Télécharger mon CV"
+  }
+}

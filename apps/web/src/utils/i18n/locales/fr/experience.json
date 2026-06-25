@@ -1,0 +1,30 @@
+{
+  "title": "Expériences professionnelles",
+  "items": [
+    {
+      "title": "Ingénieur Logiciel (Stage)",
+      "company": "ID Protect",
+      "period": "Mar 2025 – Sep 2025",
+      "description": "Startup spécialisée dans la gestion d'identité numérique et la sécurité des parcours digitaux.",
+      "achievements": [
+        "Développement de fonctionnalités SaaS en Node.js / React, incluant authentification, interfaces utilisateur, workflows et API internes.",
+        "Conception et intégration d'un assistant IA temps réel basé sur OpenAI avec WebSockets bidirectionnels.",
+        "Mise en place d'un pipeline CI/CD (GitHub Actions), réduisant le temps de déploiement de ~15%.",
+        "Intégration d'un parcours de paiement iOS via Stripe + RevenueCat, permettant l'acquisition de +100 nouveaux clients."
+      ],
+      "tags": ["Node.js", "React", "TypeScript", "WebSockets", "OpenAI", "Stripe"]
+    },
+    {
+      "title": "Développeur Fullstack (Stage)",
+      "company": "Linking Industrie et Developpement",
+      "period": "Juin 2024 – Sep 2024",
+      "description": "Développement web & mobile pour des solutions de linking industriel.",
+      "achievements": [
+        "Développement d'applications mobiles cross-platform avec Flutter et React Native.",
+        "Implémentation d'APIs RESTful avec Node.js et Express.",
+        "Collaboration avec une équipe de 5 développeurs en méthodologie Agile."
+      ],
+      "tags": ["Flutter", "React Native", "Node.js", "Express", "Agile"]
+    }
+  ]
+}

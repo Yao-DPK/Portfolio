@@ -1,0 +1,30 @@
+{
+  "title": "Professional Experience",
+  "items": [
+    {
+      "title": "Software Engineer (Intern)",
+      "company": "ID Protect",
+      "period": "Mar 2025 – Sep 2025",
+      "description": "Startup specializing in digital identity management and digital journey security.",
+      "achievements": [
+        "Developed SaaS features in Node.js / React, including authentication, UI workflows, and internal APIs.",
+        "Designed and integrated a real-time AI assistant based on OpenAI with bi-directional WebSockets.",
+        "Set up a CI/CD pipeline (GitHub Actions), reducing deployment time by ~15%.",
+        "Integrated iOS payment flow via Stripe + RevenueCat, acquiring +100 new customers."
+      ],
+      "tags": ["Node.js", "React", "TypeScript", "WebSockets", "OpenAI", "Stripe"]
+    },
+    {
+      "title": "Fullstack Developer (Intern)",
+      "company": "Linking Industrie et Developpement",
+      "period": "Jun 2024 – Sep 2024",
+      "description": "Web & mobile development for industrial linking solutions.",
+      "achievements": [
+        "Built cross-platform mobile applications using Flutter and React Native.",
+        "Implemented RESTful APIs with Node.js and Express.",
+        "Collaborated with a team of 5 developers using Agile methodology."
+      ],
+      "tags": ["Flutter", "React Native", "Node.js", "Express", "Agile"]
+    }
+  ]
+}
