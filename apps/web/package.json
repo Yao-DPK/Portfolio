@@ -2,6 +2,7 @@
   "name": "web",
   "version": "0.1.0",
   "private": true,
+  "packageManager": "npm",
   "scripts": {
     "dev": "next dev",
     "clean:dev": "rm -rf .next && npm run dev",

@@ -1,6 +1,7 @@
 {
   "title": "📬 Let's stay in touch",
   "description": "Whether it's for an exciting project, a professional opportunity, or just to chat, I'd be happy to connect with you. Reply within 24h.",
+  "subtitle": "Software Engineer · Rennes · Remote",
   "form": {
     "title": "Send me a message",
     "subtitle": "I'll get back to you as soon as possible",
@@ -21,9 +22,24 @@
     "minLength": "Minimum {{count}} characters"
   },
   "info": {
-    "email": "Email",
-    "github": "GitHub",
-    "linkedin": "LinkedIn",
+    "email": {
+      "title": "Email",
+      "value": "yao.konan2709@gmail.com",
+      "href": "mailto:yao.konan2709@gmail.com",
+      "action": "Send an email"
+    },
+    "github": {
+      "title": "Github",
+      "value": "github.com/Yao-DPK",
+      "href": "https://github.com/Yao-DPK",
+      "action": "View Profile"
+    },
+    "linkedin": {
+      "title": "Linkedin",
+      "value": "linkedin.com/in/yaokonan/",
+      "href": "https://www.linkedin.com/in/yaokonan",
+      "action": "View Profile"
+    },
     "availability": "Available for opportunities",
     "contact": "Contact",
     "follow": "Follow",

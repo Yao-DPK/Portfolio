@@ -14,7 +14,7 @@ export default function FooterPreview() {
         </p>
         <div className="flex items-center gap-4">
           <a
-            href="https://github.com/yaokonan"
+            href="https://github.com/Yao-DPK"
             target="_blank"
             rel="noopener noreferrer"
             className="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-all duration-300 hover:scale-110"

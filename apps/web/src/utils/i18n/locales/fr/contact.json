@@ -1,6 +1,7 @@
 {
   "title": "📬 Restons en contact",
   "description": "Que ce soit pour un projet passionnant, une opportunité professionnelle ou simplement pour échanger, je serais ravi de discuter avec vous. Réponse sous 24h.",
+  "subtitle": "Ingénieur Logiciel · Rennes · Remote",
   "form": {
     "title": "Envoyez-moi un message",
     "subtitle": "Je vous répondrai dans les meilleurs délais",
@@ -21,9 +22,24 @@
     "minLength": "Minimum {{count}} caractères"
   },
   "info": {
-    "email": "Email",
-    "github": "GitHub",
-    "linkedin": "LinkedIn",
+    "email": {
+      "title": "Email",
+      "value": "yao.konan2709@gmail.com",
+      "href": "mailto:yao.konan2709@gmail.com",
+      "action": "Envoyer un mail"
+    },
+    "github": {
+      "title": "Github",
+      "value": "github.com/Yao-DPK",
+      "href": "https://github.com/Yao-DPK",
+      "action": "Voir le Profil"
+    },
+    "linkedin": {
+      "title": "Linkedin",
+      "value": "linkedin.com/in/yaokonan/",
+      "href": "https://www.linkedin.com/in/yaokonan",
+      "action": "Voir le Profil"
+    },
     "availability": "Disponible pour des opportunités",
     "contact": "Contacter",
     "follow": "Suivre",

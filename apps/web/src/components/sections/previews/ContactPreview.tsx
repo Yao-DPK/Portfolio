@@ -29,21 +29,21 @@ export default function ContactPreview() {
   const contactItems = [
     {
       icon: <EmailIcon />,
-      label: 'Email',
-      value: 'yaokonan@email.com',
+      label: 'email',
+      value: 'yao.konan2709@email.com',
       href: 'mailto:yaokonan@email.com',
       action: '📧 Envoyer un email',
     },
     {
       icon: <GitHubIcon />,
-      label: 'GitHub',
+      label: 'github',
       value: 'github.com/yaokonan',
       href: 'https://github.com/yaokonan',
       action: '🐙 Voir le profil',
     },
     {
       icon: <LinkedInIcon />,
-      label: 'LinkedIn',
+      label: 'linkedin',
       value: 'linkedin.com/in/yaokonan',
       href: 'https://linkedin.com/in/yaokonan',
       action: '🔗 Voir le profil',
@@ -80,7 +80,7 @@ export default function ContactPreview() {
                 <span className="text-[var(--accent)] opacity-40 text-xl">✦</span>
               </div>
               <p className="text-sm text-[var(--text-secondary)] font-mono">
-                Full Stack Developer · Côte d'Ivoire · Remote
+                {t('subtitle')}
               </p>
             </div>
             <span className="inline-flex items-center gap-2 px-3 py-1.5 bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 text-xs font-mono rounded-full border border-emerald-200 dark:border-emerald-800 whitespace-nowrap">
@@ -106,13 +106,13 @@ export default function ContactPreview() {
                   {item.icon}
                 </div>
                 <p className="text-xs text-[var(--text-secondary)] font-mono opacity-60">
-                  {item.label}
+                  {t(`info.${item.label}.title`)}
                 </p>
                 <p className="text-sm text-[var(--foreground)] font-mono truncate max-w-full group-hover:text-[var(--accent)] transition-colors">
-                  {item.value}
+                  {t(`info.${item.label}.value`)}
                 </p>
                 <span className="mt-2 text-xs font-medium text-[var(--accent)] opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  {item.action} →
+                  {t(`info.${item.label}.action`)} →
                 </span>
               </a>
             ))}
@@ -121,7 +121,7 @@ export default function ContactPreview() {
           {/* Boutons d'action */}
           <div className="flex flex-wrap gap-3 pt-4 border-t border-[var(--card-border)]/50">
             <a
-              href="mailto:yaokonan@email.com"
+              href={t(`info.email.href`)}
               className="inline-flex items-center gap-2 px-5 py-2.5 bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white text-sm font-medium rounded-lg transition-all duration-200 hover:scale-105 shadow-lg shadow-[var(--accent)]/25"
             >
               💬 {t('info.contactAction')}
