@@ -126,7 +126,7 @@
     "text": "Aperçu détaillé"
   },
   "extend_button":{
-    "text":"Voir tous les projets",
+    "extend_text":"Voir tous les projets",
     "retract_text": "Voir moins"  
   }, 
   "section_footer":{
