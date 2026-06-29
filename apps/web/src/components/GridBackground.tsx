@@ -1,3 +1,4 @@
+// src/components/GridBackground.tsx
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
@@ -13,10 +14,15 @@ interface Dot {
   direction: 'horizontal' | 'vertical';
   nextIntersectionX: number;
   nextIntersectionY: number;
-  // Nouveaux attributs pour l'interaction souris
+  // ✅ État d'attraction
   attracted: boolean;
-  attractTargetX: number;
-  attractTargetY: number;
+  // ✅ Orbite
+  orbitAngle: number;
+  orbitRadius: number;
+  orbitSpeed: number;
+  // ✅ Position orbitale calculée
+  orbitX: number;
+  orbitY: number;
 }
 
 interface GridBackgroundProps {
@@ -25,27 +31,32 @@ interface GridBackgroundProps {
   dotCount?: number;
   trailLength?: number;
   speed?: number;
-  attractRadius?: number; // Rayon dans lequel les points se regroupent
+  attractRadius?: number;      // Rayon d'attraction
+  orbitRadiusMin?: number;      // Rayon d'orbite min
+  orbitRadiusMax?: number;      // Rayon d'orbite max
+  orbitSpeed?: number;          // Vitesse orbitale (rad/frame)
 }
 
 export default function GridBackground({
   className = '',
-  gridSize = 50,
-  dotCount = 4,
-  trailLength = 25,
-  speed = 1.5,
-  attractRadius = 300, // Zone d'attraction autour du curseur
+  gridSize = 48,
+  dotCount = 5,
+  trailLength = 30,
+  speed = 1.2,
+  attractRadius = 350,
+  orbitRadiusMin = 120,
+  orbitRadiusMax = 220,
+  orbitSpeed = 0.015,
 }: GridBackgroundProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isDark, setIsDark] = useState(false);
-  const [mousePos, setMousePos] = useState<{ x: number; y: number } | null>(null);
   const animationRef = useRef<number>(0);
   const dotsRef = useRef<Dot[]>([]);
   const frameRef = useRef(0);
   const dimensionsRef = useRef({ width: 0, height: 0 });
   const mouseTargetRef = useRef<{ x: number; y: number } | null>(null);
+  const pulseRef = useRef(0);
 
-  // Palette de couleurs FIXE
   const DOT_COLORS = [
     '#2563EB', // bleu roi
     '#7C3AED', // violet
@@ -55,23 +66,21 @@ export default function GridBackground({
     '#0891B2', // cyan
   ];
 
-  // Détecter le thème (SANS réinitialiser les points)
+  // ─── Détection du thème ────────────────────────────────
   useEffect(() => {
     const checkTheme = () => {
       setIsDark(document.documentElement.classList.contains('dark'));
     };
-
     checkTheme();
     const observer = new MutationObserver(checkTheme);
     observer.observe(document.documentElement, {
       attributes: true,
       attributeFilter: ['class'],
     });
-
     return () => observer.disconnect();
   }, []);
 
-  // Suivre la souris
+  // ─── Suivi de la souris ────────────────────────────────
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       const canvas = canvasRef.current;
@@ -79,30 +88,24 @@ export default function GridBackground({
       const rect = canvas.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
-      setMousePos({ x, y });
       mouseTargetRef.current = { x, y };
     };
-
     const handleMouseLeave = () => {
-      setMousePos(null);
       mouseTargetRef.current = null;
     };
-
     window.addEventListener('mousemove', handleMouseMove);
     window.addEventListener('mouseleave', handleMouseLeave);
-
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('mouseleave', handleMouseLeave);
     };
   }, []);
 
-  // Initialisation des points (une seule fois)
+  // ─── Initialisation ─────────────────────────────────────
   useEffect(() => {
     const initDots = (width: number, height: number) => {
       const cols = Math.floor(width / gridSize);
       const rows = Math.floor(height / gridSize);
-      
       dotsRef.current = [];
 
       for (let i = 0; i < dotCount; i++) {
@@ -110,11 +113,10 @@ export default function GridBackground({
         const row = Math.floor(Math.random() * rows);
         const x = col * gridSize + gridSize / 2;
         const y = row * gridSize + gridSize / 2;
-        
         const direction = Math.random() > 0.5 ? 'horizontal' : 'vertical';
-        
-        let nextX = x;
-        let nextY = y;
+
+        let nextX = x,
+          nextY = y;
         if (direction === 'horizontal') {
           const targetCol = (col + (Math.random() > 0.5 ? 1 : -1) + cols) % cols;
           nextX = targetCol * gridSize + gridSize / 2;
@@ -124,7 +126,7 @@ export default function GridBackground({
           nextX = x;
           nextY = targetRow * gridSize + gridSize / 2;
         }
-        
+
         dotsRef.current.push({
           x,
           y,
@@ -137,30 +139,29 @@ export default function GridBackground({
           nextIntersectionX: nextX,
           nextIntersectionY: nextY,
           attracted: false,
-          attractTargetX: x,
-          attractTargetY: y,
+          orbitAngle: Math.random() * Math.PI * 2,
+          orbitRadius: orbitRadiusMin + Math.random() * (orbitRadiusMax - orbitRadiusMin),
+          orbitSpeed: orbitSpeed * (0.8 + Math.random() * 0.4),
+          orbitX: x,
+          orbitY: y,
         });
       }
     };
 
     const canvas = canvasRef.current;
     if (!canvas) return;
-
     const parent = canvas.parentElement;
     if (!parent) return;
-
     const width = parent.clientWidth;
     const height = parent.clientHeight;
     dimensionsRef.current = { width, height };
     initDots(width, height);
+  }, [dotCount, gridSize, speed, orbitRadiusMin, orbitRadiusMax, orbitSpeed]);
 
-  }, [dotCount, gridSize, speed]);
-
-  // Setup du canvas (taille)
+  // ─── Redimensionnement ─────────────────────────────────
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-
     const resize = () => {
       const parent = canvas.parentElement;
       if (!parent) return;
@@ -170,35 +171,32 @@ export default function GridBackground({
       canvas.width = width;
       canvas.height = height;
     };
-
     resize();
     window.addEventListener('resize', resize);
-
     return () => window.removeEventListener('resize', resize);
   }, []);
 
-  // Animation
+  // ─── Animation ──────────────────────────────────────────
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    // Fonction pour choisir une nouvelle direction
-    const chooseNewDirection = (dot: Dot, cols: number, rows: number, targetX?: number, targetY?: number) => {
+    const chooseNewDirection = (
+      dot: Dot,
+      cols: number,
+      rows: number,
+      targetX?: number,
+      targetY?: number
+    ) => {
       const currentCol = Math.round((dot.x - gridSize / 2) / gridSize);
       const currentRow = Math.round((dot.y - gridSize / 2) / gridSize);
-      
-      // Si on a une cible (attraction), on oriente le point vers la cible
+
       if (targetX !== undefined && targetY !== undefined) {
         const dx = targetX - dot.x;
         const dy = targetY - dot.y;
-        const absDx = Math.abs(dx);
-        const absDy = Math.abs(dy);
-        
-        // Choisir la direction qui rapproche le plus de la cible
-        if (absDx > absDy) {
+        if (Math.abs(dx) > Math.abs(dy)) {
           dot.direction = 'horizontal';
           const delta = dx > 0 ? 1 : -1;
           const targetCol = (currentCol + delta + cols) % cols;
@@ -212,10 +210,8 @@ export default function GridBackground({
           dot.nextIntersectionY = targetRow * gridSize + gridSize / 2;
         }
       } else {
-        // Mouvement aléatoire normal
         const newDirection = Math.random() > 0.5 ? 'horizontal' : 'vertical';
         dot.direction = newDirection;
-        
         if (newDirection === 'horizontal') {
           const delta = Math.random() > 0.5 ? 1 : -1;
           const targetCol = (currentCol + delta + cols) % cols;
@@ -235,20 +231,25 @@ export default function GridBackground({
       const height = canvas.height;
       const cols = Math.floor(width / gridSize);
       const rows = Math.floor(height / gridSize);
-
       frameRef.current++;
 
-      // --- EFFACER LE CANVAS ---
+      // Pulsation
+      pulseRef.current += 0.02;
+      const pulse = Math.sin(pulseRef.current) * 0.5 + 0.5;
+
+      // ── Effacer ──
       ctx.clearRect(0, 0, width, height);
-      
-      // Fond
+
+      // ── Fond (amélioré dark mode) ──
       const bgGradient = ctx.createRadialGradient(
         width / 2, height / 2, 0,
         width / 2, height / 2, Math.max(width, height) * 0.7
       );
       if (isDark) {
-        bgGradient.addColorStop(0, '#0a0e1a');
-        bgGradient.addColorStop(1, '#050810');
+        // ✅ Dark mode : fond plus lumineux
+        bgGradient.addColorStop(0, '#0f1a2e');
+        bgGradient.addColorStop(0.5, '#0a1525');
+        bgGradient.addColorStop(1, '#050a14');
       } else {
         bgGradient.addColorStop(0, '#f0f4ff');
         bgGradient.addColorStop(1, '#e8ecf5');
@@ -256,11 +257,35 @@ export default function GridBackground({
       ctx.fillStyle = bgGradient;
       ctx.fillRect(0, 0, width, height);
 
-      // --- 1. DESSINER LA GRILLE ---
-      const gridColor = isDark ? 'rgba(37, 99, 235, 0.2)' : 'rgba(37, 99, 235, 0.12)';
-      const gridColorStrong = isDark ? 'rgba(37, 99, 235, 0.35)' : 'rgba(37, 99, 235, 0.2)';
-      ctx.lineWidth = 1;
+      // ── Effet pulsation sur le fond (en dark mode) ──
+      if (isDark) {
+        const pulseGlow = ctx.createRadialGradient(
+          width / 2, height / 2, 0,
+          width / 2, height / 2, Math.max(width, height) * 0.5
+        );
+        const alpha = 0.03 + pulse * 0.04;
+        pulseGlow.addColorStop(0, `rgba(60, 130, 255, ${alpha})`);
+        pulseGlow.addColorStop(1, 'rgba(60, 130, 255, 0)');
+        ctx.fillStyle = pulseGlow;
+        ctx.fillRect(0, 0, width, height);
+      }
 
+      // ── Grille (effet écran d'ordinateur) ──
+      // Lignes principales plus épaisses et lumineuses en dark mode
+      const gridColor = isDark
+        ? `rgba(80, 160, 255, ${0.12 + pulse * 0.05})`
+        : 'rgba(37, 99, 235, 0.10)';
+      const gridColorStrong = isDark
+        ? `rgba(100, 190, 255, ${0.35 + pulse * 0.1})`
+        : 'rgba(37, 99, 235, 0.20)';
+
+      // Sous-grille (effet écran)
+      const subGridColor = isDark
+        ? `rgba(60, 140, 255, ${0.06 + pulse * 0.03})`
+        : 'rgba(37, 99, 235, 0.05)';
+
+      // Lignes verticales principales
+      ctx.lineWidth = isDark ? 1.2 : 1;
       for (let x = 0; x <= width; x += gridSize) {
         ctx.beginPath();
         ctx.moveTo(x, 0);
@@ -269,6 +294,7 @@ export default function GridBackground({
         ctx.stroke();
       }
 
+      // Lignes horizontales principales
       for (let y = 0; y <= height; y += gridSize) {
         ctx.beginPath();
         ctx.moveTo(0, y);
@@ -277,52 +303,82 @@ export default function GridBackground({
         ctx.stroke();
       }
 
-      // --- 2. GESTION DE L'ATTRACTION SOURIS ---
+      // Sous-grille (lignes fines)
+      if (isDark) {
+        ctx.lineWidth = 0.5;
+        const subGridSize = gridSize / 4;
+        for (let x = 0; x <= width; x += subGridSize) {
+          if (x % gridSize === 0) continue;
+          ctx.beginPath();
+          ctx.moveTo(x, 0);
+          ctx.lineTo(x, height);
+          ctx.strokeStyle = subGridColor;
+          ctx.stroke();
+        }
+        for (let y = 0; y <= height; y += subGridSize) {
+          if (y % gridSize === 0) continue;
+          ctx.beginPath();
+          ctx.moveTo(0, y);
+          ctx.lineTo(width, y);
+          ctx.strokeStyle = subGridColor;
+          ctx.stroke();
+        }
+      }
+
+      // ── Effet de lueur sur la grille (dark mode) ──
+      if (isDark) {
+        const glowAlpha = 0.03 + pulse * 0.03;
+        const glowGradient = ctx.createRadialGradient(
+          width / 2, height / 2, 0,
+          width / 2, height / 2, Math.max(width, height) * 0.6
+        );
+        glowGradient.addColorStop(0, `rgba(100, 180, 255, ${glowAlpha})`);
+        glowGradient.addColorStop(1, 'rgba(100, 180, 255, 0)');
+        ctx.fillStyle = glowGradient;
+        ctx.fillRect(0, 0, width, height);
+      }
+
+      // ── Gestion des points ──
       const mouse = mouseTargetRef.current;
-      
+
       for (const dot of dotsRef.current) {
-        // Vérifier si le point est dans la zone d'attraction
         if (mouse) {
           const dx = mouse.x - dot.x;
           const dy = mouse.y - dot.y;
           const dist = Math.sqrt(dx * dx + dy * dy);
-          
-          if (dist < attractRadius) {
-            // Le point est dans la zone → il est attiré
+
+          // Rayon d'orbite = distance fixe autour du curseur
+          const ORBIT_RADIUS = 150;
+          const ATTRACTION_RADIUS = attractRadius;
+
+          if (dist < ATTRACTION_RADIUS) {
             dot.attracted = true;
-            dot.attractTargetX = mouse.x;
-            dot.attractTargetY = mouse.y;
-          } else if (dot.attracted) {
-            // Le point a quitté la zone, on le libère
-            dot.attracted = false;
-            // Choisir une nouvelle direction aléatoire
-            chooseNewDirection(dot, cols, rows);
-          }
-        } else {
-          // Pas de souris → mouvement normal
-          if (dot.attracted) {
-            dot.attracted = false;
-            chooseNewDirection(dot, cols, rows);
-          }
-        }
 
-        // Si le point est attiré, on le redirige vers la souris
-        if (dot.attracted && mouse) {
-          // Vérifier si on est arrivé à la cible d'attraction
-          const dx = dot.attractTargetX - dot.x;
-          const dy = dot.attractTargetY - dot.y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          
-          if (dist < 20) {
-            // Proche de la souris → mouvement aléatoire mais dans la zone
-            chooseNewDirection(dot, cols, rows);
+            if (dist > ORBIT_RADIUS) {
+              // ✅ PHASE ATTRACTION : se diriger vers le curseur
+              chooseNewDirection(dot, cols, rows, mouse.x, mouse.y);
+            } else {
+              // ✅ PHASE ORBITE : tourner autour du curseur
+              // Mettre à jour l'angle orbital
+              dot.orbitAngle += dot.orbitSpeed;
+
+              // Calculer la position orbitale (cercle parfait)
+              dot.orbitX = mouse.x + Math.cos(dot.orbitAngle) * ORBIT_RADIUS;
+              dot.orbitY = mouse.y + Math.sin(dot.orbitAngle) * ORBIT_RADIUS;
+
+              // Se diriger vers la position orbitale
+              chooseNewDirection(dot, cols, rows, dot.orbitX, dot.orbitY);
+            }
           } else {
-            // Se diriger vers la souris
-            chooseNewDirection(dot, cols, rows, mouse.x, mouse.y);
+            if (dot.attracted) {
+              dot.attracted = false;
+              chooseNewDirection(dot, cols, rows);
+            }
           }
         }
 
-        // --- DÉPLACEMENT VERS LA PROCHAINE INTERSECTION ---
+
+        // ── Déplacement ──
         const dx = dot.nextIntersectionX - dot.x;
         const dy = dot.nextIntersectionY - dot.y;
         const distance = Math.sqrt(dx * dx + dy * dy);
@@ -330,10 +386,17 @@ export default function GridBackground({
         if (distance < 1) {
           dot.x = dot.nextIntersectionX;
           dot.y = dot.nextIntersectionY;
-          
-          // Si attiré, on recalcule la direction vers la souris
           if (dot.attracted && mouse) {
-            chooseNewDirection(dot, cols, rows, mouse.x, mouse.y);
+            // Recalculer la direction après avoir atteint l'intersection
+            const distToMouse = Math.sqrt(
+              (mouse.x - dot.x) ** 2 + (mouse.y - dot.y) ** 2
+            );
+            if (distToMouse < 180) {
+              // En orbite, continuer vers la position orbitale
+              chooseNewDirection(dot, cols, rows, dot.orbitX, dot.orbitY);
+            } else {
+              chooseNewDirection(dot, cols, rows, mouse.x, mouse.y);
+            }
           } else {
             chooseNewDirection(dot, cols, rows);
           }
@@ -343,24 +406,20 @@ export default function GridBackground({
           dot.y += (dy / distance) * Math.min(step, distance);
         }
 
-        // --- TRACE ---
+        // ── Trace ──
         dot.trail.push({ x: dot.x, y: dot.y });
-        if (dot.trail.length > trailLength) {
-          dot.trail.shift();
-        }
+        if (dot.trail.length > trailLength) dot.trail.shift();
 
         const color = dot.color;
 
-        // --- DESSINER LA TRACE ---
+        // ── Dessiner la trace ──
         if (dot.trail.length > 1) {
           for (let i = 1; i < dot.trail.length; i++) {
             const alpha = (i / dot.trail.length) * 0.85;
             const width = (i / dot.trail.length) * 5 + 1;
-            
             ctx.beginPath();
             ctx.moveTo(dot.trail[i - 1].x, dot.trail[i - 1].y);
             ctx.lineTo(dot.trail[i].x, dot.trail[i].y);
-            
             const opacity = Math.floor(alpha * 180).toString(16).padStart(2, '0');
             ctx.strokeStyle = color + opacity;
             ctx.lineWidth = width;
@@ -369,23 +428,24 @@ export default function GridBackground({
           }
         }
 
-        // --- GLOW ---
+        // ── Glow ──
+        const glowRadius = dot.attracted ? 90 : 70;
         const glowGradient = ctx.createRadialGradient(
           dot.x, dot.y, 0,
-          dot.x, dot.y, 70
+          dot.x, dot.y, glowRadius
         );
         glowGradient.addColorStop(0, color + 'cc');
         glowGradient.addColorStop(0.3, color + '66');
         glowGradient.addColorStop(1, 'transparent');
         ctx.fillStyle = glowGradient;
         ctx.beginPath();
-        ctx.arc(dot.x, dot.y, 70, 0, Math.PI * 2);
+        ctx.arc(dot.x, dot.y, glowRadius, 0, Math.PI * 2);
         ctx.fill();
 
-        // --- POINT ---
+        // ── Point ──
         ctx.shadowColor = color;
         ctx.shadowBlur = 35;
-        
+
         ctx.fillStyle = '#ffffff';
         ctx.beginPath();
         ctx.arc(dot.x, dot.y, 4, 0, Math.PI * 2);
@@ -404,36 +464,59 @@ export default function GridBackground({
         ctx.fill();
       }
 
-      // --- 3. EFFET VISUEL DE LA ZONE D'ATTRACTION (optionnel) ---
+      // ── Cercle d'attraction ──
       if (mouse) {
-        // Cercle discret autour de la souris
+        // Cercle principal
         ctx.beginPath();
         ctx.arc(mouse.x, mouse.y, attractRadius, 0, Math.PI * 2);
-        ctx.strokeStyle = isDark ? 'rgba(37, 99, 235, 0.08)' : 'rgba(37, 99, 235, 0.05)';
+        ctx.strokeStyle = isDark
+          ? `rgba(100, 180, 255, ${0.06 + pulse * 0.03})`
+          : 'rgba(37, 99, 235, 0.05)';
         ctx.lineWidth = 1;
         ctx.stroke();
-        
-        // Petit point à la position de la souris
-        ctx.fillStyle = isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.03)';
+
+        // Cercle orbital (seuil)
         ctx.beginPath();
-        ctx.arc(mouse.x, mouse.y, 5, 0, Math.PI * 2);
+        ctx.arc(mouse.x, mouse.y, 180, 0, Math.PI * 2);
+        ctx.strokeStyle = isDark
+          ? `rgba(100, 180, 255, ${0.04 + pulse * 0.02})`
+          : 'rgba(37, 99, 235, 0.03)';
+        ctx.setLineDash([5, 10]);
+        ctx.stroke();
+        ctx.setLineDash([]);
+
+        // Point central
+        ctx.fillStyle = isDark
+          ? 'rgba(255,255,255,0.05)'
+          : 'rgba(0,0,0,0.03)';
+        ctx.beginPath();
+        ctx.arc(mouse.x, mouse.y, 4, 0, Math.PI * 2);
         ctx.fill();
       }
 
-      // --- 4. SCANLINE ---
+      // ── Scanline ──
       const scanlineOffset = (frameRef.current * 0.3) % 4;
-      ctx.fillStyle = isDark ? 'rgba(0, 0, 0, 0.025)' : 'rgba(0, 0, 0, 0.015)';
+      ctx.fillStyle = isDark
+        ? 'rgba(0, 0, 0, 0.025)'
+        : 'rgba(0, 0, 0, 0.015)';
       for (let y = scanlineOffset; y < height; y += 4) {
         ctx.fillRect(0, y, width, 1);
       }
 
-      // --- 5. VIGNETTE ---
+      // ── Vignette ──
       const vignetteGradient = ctx.createRadialGradient(
-        width / 2, height / 2, Math.min(width, height) * 0.25,
-        width / 2, height / 2, Math.max(width, height) * 0.7
+        width / 2,
+        height / 2,
+        Math.min(width, height) * 0.25,
+        width / 2,
+        height / 2,
+        Math.max(width, height) * 0.7
       );
       vignetteGradient.addColorStop(0, 'transparent');
-      vignetteGradient.addColorStop(1, isDark ? 'rgba(0, 0, 0, 0.25)' : 'rgba(0, 0, 0, 0.04)');
+      vignetteGradient.addColorStop(1, isDark
+        ? 'rgba(0, 0, 0, 0.3)'
+        : 'rgba(0, 0, 0, 0.04)'
+      );
       ctx.fillStyle = vignetteGradient;
       ctx.fillRect(0, 0, width, height);
 
@@ -447,7 +530,7 @@ export default function GridBackground({
         cancelAnimationFrame(animationRef.current);
       }
     };
-  }, [isDark, gridSize, trailLength, attractRadius]);
+  }, [isDark, gridSize, trailLength, attractRadius, speed, orbitRadiusMin, orbitRadiusMax, orbitSpeed]);
 
   return (
     <canvas

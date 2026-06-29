@@ -1,0 +1,27 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "apps/web/package.json",
+      "use": "@vercel/next"
+    },
+    {
+      "src": "apps/api/package.json",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "apps/api/src/main"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "apps/web"
+    }
+  ],
+  "framework": "nextjs",
+  "monorepo": true,
+  "installCommand": "npm install",
+  "buildCommand": "npm run build"
+}

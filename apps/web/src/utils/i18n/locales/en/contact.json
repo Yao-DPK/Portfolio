@@ -1,16 +1,18 @@
 {
   "title": "📬 Let's stay in touch",
-  "description": "Whether it's for an exciting project, a professional opportunity, or just to chat, I'd be happy to connect with you.",
+  "description": "Whether it's for an exciting project, a professional opportunity, or just to chat, I'd be happy to connect with you. Reply within 24h.",
   "form": {
-    "name": "Your name",
+    "title": "Send me a message",
+    "subtitle": "I'll get back to you as soon as possible",
+    "name": "Name",
     "namePlaceholder": "John Doe",
-    "email": "Your email",
+    "email": "Email",
     "emailPlaceholder": "john.doe@email.com",
     "subject": "Subject",
     "subjectPlaceholder": "Collaboration request",
     "message": "Message",
     "messagePlaceholder": "Describe your project or message here...",
-    "submit": "Send message",
+    "submit": "✉️ Send",
     "sending": "Sending...",
     "success": "✅ Message sent successfully! I'll get back to you within 24h.",
     "error": "❌ An error occurred. Please try again or email me directly.",
@@ -19,9 +21,14 @@
     "minLength": "Minimum {{count}} characters"
   },
   "info": {
-    "email": "yao.konan2709@gmail.com",
-    "github": "https://github.com/Yao-DPK",
-    "linkedin": "https://www.linkedin.com/in/yaokonan/",
-    "availability": "Available for opportunities"
+    "email": "Email",
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "availability": "Available for opportunities",
+    "contact": "Contact",
+    "follow": "Follow",
+    "contactAction": "Contact",
+    "cvAction": "Resume",
+    "projectsAction": "Projects"
   }
 }

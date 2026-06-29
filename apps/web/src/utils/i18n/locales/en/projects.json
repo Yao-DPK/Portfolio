@@ -1,35 +1,136 @@
 {
-  "title": "Things I've built",
+  "title": "Projects",
+  "subtitle": "some projects I've worked on",
   "items": [
     {
-      "title": "AI Assistant · SaaS",
-      "description": "AI assistant integrated directly into a web and mobile product.",
-      "details": [
-        "Full pipeline: request preparation → API call → response transformation → final UI rendering.",
-        "Real-time communication via WebSockets (Node.js ↔ React ↔ Flutter).",
-        "UX design with Figma, error handling, timeouts, and partial streaming."
+      "id": "obc-platform",
+      "title": "OBC – Basketball Center Management Platform",
+      "description": "All-in-one platform for managing registrations, documents, payments, and player tracking.",
+      "tags": ["React", "TypeScript", "Node.js", "Express", "PostgreSQL", "Tailwind CSS", "Framer Motion", "Shadcn/ui", "Zustand"],
+      "status": "In development",
+      "visibility": "private",
+      "year": "2024",
+      "type": "Professional project",
+      "image": "/images/projects/obc-cover.jpg",
+      "screenshots": [
+
       ],
-      "tags": ["React", "Node.js", "TypeScript", "WebSockets", "OpenAI"]
+      "links": { "live": null, "demo": null, "source": null }
     },
     {
-      "title": "Feedback IA · Angular",
-      "description": "Angular application connected to a FastAPI to display AI predictions and collect user feedback.",
-      "details": [
-        "Designed a clean UI for prediction display and feedback collection.",
-        "Built a robust API with FastAPI and PostgreSQL.",
-        "Containerized the application with Docker for easy deployment."
+      "id": "feedback-ia-amiad",
+      "title": "AI Predictions Feedback Platform",
+      "description": "Angular/FastAPI platform to collect and analyze user feedback on AI predictions.",
+      "tags": ["Angular", "FastAPI", "PostgreSQL", "Docker", "Swagger"],
+      "status": "In production",
+      "visibility": "private",
+      "year": "2025",
+      "type": "Professional project",
+      "image": "/images/projects/feedback-ia-cover.jpg",
+      "screenshots": [
+
       ],
-      "tags": ["Angular", "FastAPI", "PostgreSQL", "Docker"]
+      "links": { "live": null, "demo": null, "source": null }
     },
     {
-      "title": "Association Manager · Microservices",
-      "description": "Modular web application to manage associations, projects, teams, and documents.",
-      "details": [
-        "Developed with NestJS and Angular, following a microservices architecture.",
-        "Implemented role-based access control and document management.",
-        "Used PostgreSQL for data persistence and Docker for containerization."
+      "id": "ai-assistant-saas",
+      "title": "AI Assistant for SaaS Platform",
+      "description": "Real-time AI assistant integrated in web and mobile via WebSockets.",
+      "tags": ["Node.js", "TypeScript", "React", "Flutter", "WebSockets", "OpenAI", "Figma"],
+      "status": "In production",
+      "visibility": "private",
+      "year": "2025",
+      "type": "Professional project",
+      "image": "/images/projects/ai-assistant-cover.jpg",
+      "screenshots": [
+
       ],
-      "tags": ["NestJS", "Angular", "PostgreSQL", "Docker"]
+      "links": { "live": null, "demo": null, "source": null }
+    },
+    {
+      "id": "association-manager",
+      "title": "Association Management Web App",
+      "description": "Complete application to manage members, projects, roles, and documents.",
+      "tags": ["NestJS", "Angular", "TypeScript", "PostgreSQL", "Docker", "GitHub Actions", "Prometheus", "SonarQube"],
+      "status": "Archived",
+      "visibility": "private",
+      "year": "2025",
+      "type": "Academic project",
+      "image": "/images/projects/association-manager-cover.jpg",
+      "screenshots": [
+
+      ],
+      "links": { "live": null, "demo": null, "source": null }
+    },
+    {
+      "id": "ecg-arrhythmia-classification",
+      "title": "Cardiac Arrhythmia Classification (ECG)",
+      "description": "Complete ECG pipeline + RNN TensorFlow for arrhythmia classification.",
+      "tags": ["Python", "TensorFlow", "Scikit-Learn", "NumPy", "Matplotlib"],
+      "status": "Archived",
+      "visibility": "private",
+      "year": "2024",
+      "type": "Academic project",
+      "image": "/images/projects/ecg-classification-cover.jpg",
+      "screenshots": [
+
+      ],
+      "links": { "live": null, "demo": null, "source": null }
+    },
+    {
+      "id": "music-streaming-app",
+      "title": "Music Streaming Application",
+      "description": "Streaming platform with multi-device synchronization.",
+      "tags": ["Spring Boot", "Angular", "PostgreSQL", "Docker"],
+      "status": "In development",
+      "visibility": "private",
+      "year": "2025",
+      "type": "Personal project",
+      "image": "/images/projects/music-streaming-cover.jpg",
+      "screenshots": [
+
+      ],
+      "links": { "live": null, "demo": null, "source": null }
+    },
+    {
+      "id": "multiplayer-game",
+      "title": "Real-Time Multiplayer Game",
+      "description": "Python client/server game with real-time synchronization.",
+      "tags": ["Python", "Sockets TCP", "Pygame", "Threading", "Zlib", "Pickle"],
+      "status": "Archived",
+      "visibility": "private",
+      "year": "2024",
+      "type": "Personal project",
+      "image": "/images/projects/multiplayer-game-cover.jpg",
+      "screenshots": [
+
+      ],
+      "links": { "live": null, "demo": null, "source": null }
+    },
+    {
+      "id": "ios-payment-system",
+      "title": "iOS Payment System (Stripe + RevenueCat)",
+      "description": "Node.js backend for iOS subscription management.",
+      "tags": ["Node.js", "MySQL", "Stripe", "RevenueCat", "Webhooks", "React"],
+      "status": "In production",
+      "visibility": "private",
+      "year": "2025",
+      "type": "Professional project",
+      "image": "/images/projects/ios-payment-cover.jpg",
+      "screenshots": [
+
+      ],
+      "links": { "live": null, "demo": null, "source": null }
     }
-  ]
+  ],
+  "detail_button":{
+    "text": "Overview"
+  },
+  "extend_button":{
+    "extend_text":"View all projects",
+    "retract_text": "View less" 
+  }, 
+  "section_footer":{
+    "text": "shown"
+  }
 }

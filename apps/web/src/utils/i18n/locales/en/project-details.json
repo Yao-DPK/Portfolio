@@ -1,0 +1,333 @@
+
+{
+  "obc-platform": {
+    "title": "OBC – Basketball Center Management Platform",
+    "descriptionLong": "All-in-one platform for managing registrations, documents, payments, and player tracking for the OBC basketball center (Ivory Coast). The platform centralizes operations and improves the daily efficiency of administrators, coaches, and super admins. Designed to manage over 200 players with real-time tracking.",
+    "image": "/images/projects/obc-cover.jpg",
+    "screenshots": [
+    ],
+    "status": "In production",
+    "visibility": "private",
+    "year": "2024",
+    "type": "Internship",
+    "links": { "live": null, "demo": null, "source": null },
+    "tabs": {
+      "objectives": [
+        "Centralize all player and member data",
+        "Automate the registration process (pre-registration → validation → payment)",
+        "Provide real-time visibility to administrators",
+        "Enable differentiated role management (Super Admin, Admin, Supervisor, Coach)",
+        "Improve the experience for parents and players"
+      ],
+      "techStack": [
+        "React 18 + TypeScript (functional components, hooks)",
+        "Node.js + Express (REST API)",
+        "PostgreSQL + Prisma (ORM)",
+        "Zustand (modular state management)",
+        "Tailwind CSS + Shadcn/ui (UI)",
+        "Framer Motion (animations)",
+        "JWT + bcrypt (authentication)"
+      ],
+      "features": [
+        "Registration management (pre-registration, validation, status tracking)",
+        "Document management (upload, validation, real-time tracking)",
+        "Payment management (tracking, history, late payment alerts)",
+        "Multi-role dashboards with adapted views",
+        "Dynamic dashboards (filters, search, pagination)",
+        "Alert system (pending registrations >48h, documents >7d, overdue payments)"
+      ],
+      "metrics": [
+        "200+ players managed on the platform",
+        "70% reduction in registration validation time",
+        "0 lost documents since launch",
+        "100% centralized and traceable documents"
+      ]
+    }
+  },
+
+  "feedback-ia-amiad": {
+    "title": "AI Predictions Feedback Platform",
+    "descriptionLong": "Complete platform for displaying AI predictions (provided by the AI team) and collecting user feedback. Designed for a partner organization (AMIAD), it centralizes model evaluation and continuously improves performance.",
+    "image": "/images/projects/feedback-ia-cover.jpg",
+    "screenshots": [
+
+    ],
+    "status": "In production",
+    "visibility": "private",
+    "year": "2025",
+    "type": "Professional project",
+    "links": { "live": null, "demo": null, "source": null },
+    "tabs": {
+      "objectives": [
+        "Create an ergonomic platform to display AI predictions",
+        "Collect and store user feedback in a structured way",
+        "Ensure traceability of evaluations for the AI team"
+      ],
+      "techStack": [
+        "Angular (dynamic modules, responsive UI)",
+        "FastAPI modular + Pydantic validation",
+        "PostgreSQL optimized for audit",
+        "Docker multi-service",
+        "Swagger (API documentation)"
+      ],
+      "features": [
+        "Display AI predictions",
+        "Submit and store feedback",
+        "Admin CRUD operations",
+        "Swagger documentation",
+        "Complete pipeline: retrieval → display → feedback → storage"
+      ],
+      "metrics": [
+        "Technical lead of a 5-developer team",
+        "Data standards defined with the AI team",
+        "Modular and containerized architecture"
+      ]
+    }
+  },
+
+  "ai-assistant-saas": {
+    "title": "AI Assistant for SaaS Platform",
+    "descriptionLong": "AI assistant integrated directly into a web and mobile product. Designed to improve user experience, it offers classification, reformulation, and summarization features in real-time via WebSockets.",
+    "image": "/images/projects/ai-assistant-cover.jpg",
+    "screenshots": [
+
+    ],
+    "status": "In production",
+    "visibility": "private",
+    "year": "2025",
+    "type": "Professional project",
+    "links": { "live": null, "demo": null, "source": null },
+    "tabs": {
+      "objectives": [
+        "Create an AI assistant capable of helping users in real-time",
+        "Integrate OpenAI models adapted to needs (classification, reformulation, summarization)",
+        "Provide a smooth experience on web and mobile"
+      ],
+      "techStack": [
+        "React + Flutter (multi-platform frontend)",
+        "Node.js + TypeScript (backend)",
+        "WebSockets (real-time communication)",
+        "OpenAI API",
+        "Figma (UI/UX design)"
+      ],
+      "features": [
+        "Full pipeline: request → OpenAI API → transformation → display",
+        "Conversational system with context management",
+        "Real-time streaming of responses",
+        "Error handling, timeouts, and partial streaming",
+        "Integrated UX design with Figma"
+      ],
+      "metrics": [
+        "AI integration ready for production",
+        "Real-time WebSockets for multi-client",
+        "Full-stack TypeScript"
+      ]
+    }
+  },
+
+  "association-manager": {
+    "title": "Association Management Web App",
+    "descriptionLong": "Complete web application for association management: users, projects, teams, and documents. Microservices architecture with CI/CD, monitoring, and code quality analysis.",
+    "image": "/images/projects/association-manager-cover.jpg",
+    "screenshots": [
+
+    ],
+    "status": "In production",
+    "visibility": "private",
+    "year": "2025",
+    "type": "Personal project",
+    "links": { "live": null, "demo": null, "source": null },
+    "tabs": {
+      "objectives": [
+        "Digitize the internal management of an association",
+        "Build a robust platform with complete user and project management",
+        "Implement a scalable microservices architecture"
+      ],
+      "techStack": [
+        "NestJS (backend)",
+        "Angular (frontend)",
+        "TypeScript",
+        "PostgreSQL",
+        "Docker",
+        "GitHub Actions (CI/CD)",
+        "Prometheus (monitoring)",
+        "SonarQube (code quality analysis)"
+      ],
+      "features": [
+        "User and role management",
+        "Project and team management",
+        "Document management",
+        "Permissions and access control",
+        "Prometheus monitoring",
+        "Automated code quality analysis with SonarQube"
+      ],
+      "metrics": [
+        "Monolithic → microservices transformation",
+        "Complete CI/CD pipeline",
+        "Production-ready architecture"
+      ]
+    }
+  },
+
+  "ecg-arrhythmia-classification": {
+    "title": "Cardiac Arrhythmia Classification (ECG)",
+    "descriptionLong": "Complete ECG signal preprocessing pipeline and classification using Recurrent Neural Networks (RNN) to detect different types of arrhythmias.",
+    "image": "/images/projects/ecg-classification-cover.jpg",
+    "screenshots": [
+
+    ],
+    "status": "Archived",
+    "visibility": "private",
+    "year": "2024",
+    "type": "Academic project",
+    "links": { "live": null, "demo": null, "source": null },
+    "tabs": {
+      "objectives": [
+        "Classify multiple types of arrhythmias from noisy ECG signals",
+        "Build a complete ML pipeline with preprocessing and RNN",
+        "Handle strong signal variability and imbalanced datasets"
+      ],
+      "techStack": [
+        "Python",
+        "TensorFlow",
+        "Scikit-Learn",
+        "NumPy",
+        "Matplotlib"
+      ],
+      "features": [
+        "Complete preprocessing (filtering, normalization, segmentation)",
+        "RNN training",
+        "Hyperparameter optimization with RandomizedSearchCV",
+        "Multi-metric evaluation (precision, recall, F1)",
+        "Advanced visualizations (curves, confusion matrices)"
+      ],
+      "metrics": [
+        "Complete ML pipeline",
+        "Clean, modular, and reproducible code",
+        "Healthcare-oriented AI project"
+      ]
+    }
+  },
+
+  "music-streaming-app": {
+    "title": "Music Streaming Application",
+    "descriptionLong": "Music streaming application allowing audio track synchronization across multiple devices. Full-stack platform with upload, playlist, and user management.",
+    "image": "/images/projects/music-streaming-cover.jpg",
+    "screenshots": [
+
+    ],
+    "status": "In development",
+    "visibility": "private",
+    "year": "2025",
+    "type": "Personal project",
+    "links": { "live": null, "demo": null, "source": null },
+    "tabs": {
+      "objectives": [
+        "Create a simple synchronized streaming application",
+        "Manage tracks, playlists, and users",
+        "Enable multi-device synchronization"
+      ],
+      "techStack": [
+        "Spring Boot (Java backend)",
+        "Angular (frontend)",
+        "PostgreSQL",
+        "Docker",
+        "Keycloak (authentication)"
+      ],
+      "features": [
+        "Audio track upload and streaming",
+        "Playlist management",
+        "User management",
+        "Multi-device synchronization",
+        "Secured REST API"
+      ],
+      "metrics": [
+        "Optimized I/O management",
+        "File streaming",
+        "Full-stack Java + Angular"
+      ]
+    }
+  },
+
+  "multiplayer-game": {
+    "title": "Real-Time Multiplayer Game",
+    "descriptionLong": "Complete client/server system allowing multiple players to participate in a real-time multiplayer game with synchronization and network optimization.",
+    "image": "/images/projects/multiplayer-game-cover.jpg",
+    "screenshots": [
+
+    ],
+    "status": "Archived",
+    "visibility": "private",
+    "year": "2024",
+    "type": "Personal project",
+    "links": { "live": null, "demo": null, "source": null },
+    "tabs": {
+      "objectives": [
+        "Create a multiplayer game with reliable real-time synchronization",
+        "Architect a client/server system",
+        "Optimize latency and movement security"
+      ],
+      "techStack": [
+        "Python",
+        "TCP Sockets",
+        "Pygame",
+        "Threading",
+        "Zlib (compression)",
+        "Pickle (serialization)"
+      ],
+      "features": [
+        "Multiplayer connections",
+        "Leaderboard",
+        "Collisions",
+        "Synchronized global state",
+        "Hybrid client/server validation",
+        "Pygame interface"
+      ],
+      "metrics": [
+        "Network compression for latency reduction",
+        "Advanced threading for connection management",
+        "100% functional and extensible project"
+      ]
+    }
+  },
+
+  "ios-payment-system": {
+    "title": "iOS Payment System (Stripe + RevenueCat)",
+    "descriptionLong": "Complete iOS subscription management solution with real-time synchronization via Stripe and RevenueCat. Tangible impact: over 100 new customers after deployment.",
+    "image": "/images/projects/ios-payment-cover.jpg",
+    "screenshots": [
+
+    ],
+    "status": "In production",
+    "visibility": "private",
+    "year": "2025",
+    "type": "Professional project",
+    "links": { "live": null, "demo": null, "source": null },
+    "tabs": {
+      "objectives": [
+        "Automatically synchronize iOS subscriptions",
+        "Create a stable, scalable, and consistent solution",
+        "Ensure real-time reliability"
+      ],
+      "techStack": [
+        "Node.js",
+        "MySQL",
+        "Stripe",
+        "RevenueCat",
+        "Webhooks",
+        "React"
+      ],
+      "features": [
+        "Subscription creation and validation",
+        "Real-time synchronization via webhooks",
+        "Data consistency",
+        "Monitoring dashboard"
+      ],
+      "metrics": [
+        "100+ new customers after integration",
+        "Perfect synchronization between iOS, Stripe, and database",
+        "Business-critical backend"
+      ]
+    }
+  }
+}

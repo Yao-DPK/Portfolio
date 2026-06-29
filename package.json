@@ -4,10 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-     "build": "turbo build",
-    "dev": "turbo dev",
-    "test": "turbo test",
-    "lint": "turbo lint"
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "start": "node apps/web/.next/standalone/server.js",
+    "lint": "turbo run lint",
+    "clean": "turbo run clean"
+  },
+  "devDependencies": {
+    "turbo": "^2.0.0"
   },
   "workspaces": [
     "packages/*",

@@ -1,3 +1,4 @@
+// src/components/VisitorCounter.tsx
 'use client';
 
 import { useEffect, useState } from 'react';
@@ -8,34 +9,22 @@ interface VisitorCounterProps {
 }
 
 export default function VisitorCounter({ variant = 'detailed' }: VisitorCounterProps) {
-  const [stats, setStats] = useState<VisitorStats | null>({
-  today: 0,
-  week: 0,
-  month: 0,
-  year: 0,
-  total: 0,
-});
+  const [stats, setStats] = useState<VisitorStats | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        // 1. Enregistrer la visite (POST)
-        const postRes = await recordVisit();
-        if (!postRes) throw new Error('Failed to record visit');
-        const data = await postRes;
-        
-        // Les stats sont déjà retournées par le POST
+        // Enregistrer la visite et récupérer les stats
+        const data = await recordVisit();
         setStats(data);
       } catch (err) {
         console.error('Visitor counter error:', err);
         setError(true);
-        
-        // Fallback : essayer de récupérer les stats sans incrémenter
+        // Fallback : récupérer les stats sans incrémenter
         try {
-          const getRes = await getVisitorStats();
-          const data = await getRes;
+          const data = await getVisitorStats();
           setStats(data);
         } catch (e) {
           console.error('Fallback error:', e);
@@ -50,129 +39,101 @@ export default function VisitorCounter({ variant = 'detailed' }: VisitorCounterP
 
   if (loading) {
     return (
-      <div className="flex items-center gap-2 text-slate-400 dark:text-slate-500">
-        <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24">
-          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
-          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
-        </svg>
-        <span>Chargement...</span>
+      <div className="flex items-center gap-2 text-[var(--text-secondary)] font-mono text-sm opacity-60">
+        <span className="inline-block w-2 h-2 bg-[var(--accent)] rounded-full animate-pulse" />
+        <span>chargement...</span>
       </div>
     );
   }
 
   if (error || !stats) {
     return (
-      <div className="text-sm text-slate-400 dark:text-slate-500">
-        👀 Statistiques indisponibles
+      <div className="text-sm text-[var(--text-secondary)] font-mono opacity-40">
+        <span className="opacity-40">⏳</span> statistiques indisponibles
       </div>
     );
   }
 
+  // ✅ Version compacte (footer)
   if (variant === 'compact') {
     return (
-      <div className="flex items-center gap-4 text-sm text-slate-500 dark:text-slate-400">
-        <span>👥 {stats.total.toLocaleString()} visites</span>
-        <span className="text-slate-300 dark:text-slate-600">|</span>
-        <span>Aujourd'hui : {stats.today}</span>
+      <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm font-mono text-[var(--text-secondary)] opacity-60">
+        <span className="flex items-center gap-1.5">
+          <span className="text-base">👥</span>
+          <span>{stats.total.toLocaleString()}</span>
+          <span className="text-xs opacity-40">visites</span>
+        </span>
+        <span className="opacity-30">|</span>
+        <span className="flex items-center gap-1.5">
+          <span className="text-xs opacity-40">auj.</span>
+          <span>{stats.today}</span>
+        </span>
+        <span className="opacity-30">|</span>
+        <span className="flex items-center gap-1.5">
+          <span className="text-xs opacity-40">7j</span>
+          <span>{stats.week}</span>
+        </span>
+        <span className="opacity-30">|</span>
+        <span className="flex items-center gap-1.5">
+          <span className="text-xs opacity-40">30j</span>
+          <span>{stats.month}</span>
+        </span>
       </div>
     );
   }
 
+  // ✅ Version détaillée (page d'accueil)
   return (
-    <div className="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 p-6 shadow-sm">
-      <h3 className="text-sm font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-4">
-        👁️ Statistiques du site
-      </h3>
-      
-      <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
-        <StatCard 
-          label="Aujourd'hui" 
-          value={stats.today} 
-          icon="📊"
-          color="royal"
-        />
-        <StatCard 
-          label="7 jours" 
-          value={stats.week} 
-          icon="📈"
-          color="emerald"
-        />
-        <StatCard 
-          label="30 jours" 
-          value={stats.month} 
-          icon="📅"
-          color="blue"
-        />
-        <StatCard 
-          label="Cette année" 
-          value={stats.year} 
-          icon="🌟"
-          color="purple"
-        />
-        <StatCard 
-          label="Total" 
-          value={stats.total} 
-          icon="🏆"
-          color="royal"
-          highlight
-        />
+    <div className="bg-[var(--card-background)] border border-[var(--card-border)] rounded-xl p-5 shadow-sm transition-colors duration-300">
+      {/* En-tête style terminal */}
+      <div className="flex items-center gap-2 mb-3">
+        <span className="text-[var(--accent)] font-mono text-sm">$</span>
+        <span className="text-sm font-mono text-[var(--foreground)] opacity-60">cat ~/stats.md</span>
+        <span className="ml-auto text-[10px] font-mono text-[var(--text-secondary)] opacity-30">
+          {new Date().toLocaleDateString('fr-FR', { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' })}
+        </span>
       </div>
 
-      <p className="text-xs text-slate-400 dark:text-slate-500 mt-4 text-center">
-        {new Date().toLocaleDateString('fr-FR', { 
-          weekday: 'long', 
-          year: 'numeric', 
-          month: 'long', 
-          day: 'numeric' 
-        })}
-      </p>
+      {/* Ligne de séparation */}
+      <div className="w-full h-px bg-[var(--card-border)] mb-3" />
+
+      {/* Métriques */}
+      <div className="grid grid-cols-5 gap-2">
+        <MetricItem label="today" value={stats.today} />
+        <MetricItem label="week" value={stats.week} />
+        <MetricItem label="month" value={stats.month} />
+        <MetricItem label="year" value={stats.year} />
+        <MetricItem label="total" value={stats.total} highlight />
+      </div>
+
+      {/* Ligne de séparation */}
+      <div className="w-full h-px bg-[var(--card-border)] mt-3" />
+
+      {/* Pied de page */}
+      <div className="flex items-center justify-between mt-3 text-[10px] font-mono text-[var(--text-secondary)] opacity-30">
+        <span>visites uniques • 24h</span>
+        <span>v{new Date().getFullYear()}</span>
+      </div>
     </div>
   );
 }
 
-interface StatCardProps {
+// ─── Sous-composant métrique ──────────────────────────────
+
+interface MetricItemProps {
   label: string;
   value: number;
-  icon: string;
-  color?: 'royal' | 'emerald' | 'blue' | 'purple';
   highlight?: boolean;
 }
 
-function StatCard({ label, value, icon, color = 'royal', highlight = false }: StatCardProps) {
-  const colorMap = {
-    royal: {
-      bg: 'bg-royal-50 dark:bg-royal-900/20',
-      text: 'text-royal-600 dark:text-royal-400',
-      highlight: 'bg-royal-600 dark:bg-royal-500 text-white',
-    },
-    emerald: {
-      bg: 'bg-emerald-50 dark:bg-emerald-900/20',
-      text: 'text-emerald-600 dark:text-emerald-400',
-      highlight: 'bg-emerald-600 dark:bg-emerald-500 text-white',
-    },
-    blue: {
-      bg: 'bg-blue-50 dark:bg-blue-900/20',
-      text: 'text-blue-600 dark:text-blue-400',
-      highlight: 'bg-blue-600 dark:bg-blue-500 text-white',
-    },
-    purple: {
-      bg: 'bg-purple-50 dark:bg-purple-900/20',
-      text: 'text-purple-600 dark:text-purple-400',
-      highlight: 'bg-purple-600 dark:bg-purple-500 text-white',
-    },
-  };
-
-  const style = highlight ? colorMap[color].highlight : colorMap[color].bg;
-  const textStyle = highlight ? 'text-white' : colorMap[color].text;
-
+function MetricItem({ label, value, highlight = false }: MetricItemProps) {
   return (
-    <div className={`rounded-xl p-3 text-center transition-colors ${style}`}>
-      <div className="text-2xl mb-1">{icon}</div>
-      <div className={`text-2xl font-bold ${textStyle}`}>
-        {value.toLocaleString()}
-      </div>
-      <div className={`text-xs font-medium ${highlight ? 'text-white/80' : 'text-slate-500 dark:text-slate-400'}`}>
+    <div className={`text-center p-2 rounded-lg transition-colors ${highlight ? 'bg-[var(--accent)]/10' : ''}`}>
+      <div className={`text-xs font-mono uppercase tracking-wider ${highlight ? 'text-[var(--accent)]' : 'text-[var(--text-secondary)] opacity-50'}`}>
         {label}
+      </div>
+      <div className={`text-lg font-bold font-mono ${highlight ? 'text-[var(--accent)]' : 'text-[var(--foreground)]'}`}>
+        {value.toLocaleString()}
       </div>
     </div>
   );

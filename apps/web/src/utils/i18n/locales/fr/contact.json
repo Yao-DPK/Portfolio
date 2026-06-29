@@ -1,16 +1,18 @@
 {
   "title": "📬 Restons en contact",
-  "description": "Que ce soit pour un projet passionnant, une opportunité professionnelle ou simplement pour échanger, je serais ravi de discuter avec vous.",
+  "description": "Que ce soit pour un projet passionnant, une opportunité professionnelle ou simplement pour échanger, je serais ravi de discuter avec vous. Réponse sous 24h.",
   "form": {
-    "name": "Votre nom",
+    "title": "Envoyez-moi un message",
+    "subtitle": "Je vous répondrai dans les meilleurs délais",
+    "name": "Nom",
     "namePlaceholder": "Jean Dupont",
-    "email": "Votre email",
+    "email": "Email",
     "emailPlaceholder": "jean.dupont@email.com",
     "subject": "Sujet",
     "subjectPlaceholder": "Demande de collaboration",
     "message": "Message",
     "messagePlaceholder": "Décrivez votre projet ou votre message ici...",
-    "submit": "Envoyer le message",
+    "submit": "✉️ Envoyer",
     "sending": "Envoi en cours...",
     "success": "✅ Message envoyé avec succès ! Je vous répondrai dans les 24h.",
     "error": "❌ Une erreur est survenue. Veuillez réessayer ou m'envoyer un email directement.",
@@ -19,9 +21,14 @@
     "minLength": "Minimum {{count}} caractères"
   },
   "info": {
-    "email": "yao.konan2709@gmail.com",
-    "github": "https://github.com/Yao-DPK",
-    "linkedin": "https://www.linkedin.com/in/yaokonan/",
-    "availability": "Disponible pour des opportunités"
+    "email": "Email",
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "availability": "Disponible pour des opportunités",
+    "contact": "Contacter",
+    "follow": "Suivre",
+    "contactAction": "Contact",
+    "cvAction": "CV",
+    "projectsAction": "Projets"
   }
 }

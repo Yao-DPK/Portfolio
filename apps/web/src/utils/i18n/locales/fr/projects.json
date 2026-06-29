@@ -1,35 +1,135 @@
 {
-  "title": "Projets réalisés",
+  "title": "Projets",
+  "subtitle": "quelques projets sur lesquels j'ai travaillé",
   "items": [
     {
-      "title": "Assistant IA · SaaS",
-      "description": "Assistant IA intégré dans un produit web et mobile avec WebSockets temps réel.",
-      "details": [
-        "Pipeline complet : préparation de la requête → appel API → transformation de la réponse → rendu final.",
-        "Communication temps réel via WebSockets (Node.js ↔ React ↔ Flutter).",
-        "Design UX avec Figma, gestion des erreurs, timeouts, et streaming partiel."
+      "id": "obc-platform",
+      "title": "OBC – Plateforme de gestion du centre de basket",
+      "description": "Plateforme tout-en-un pour la gestion des inscriptions, documents, paiements et suivi des joueurs.",
+      "tags": ["React", "TypeScript", "Node.js", "Express", "PostgreSQL", "Tailwind CSS", "Framer Motion", "Shadcn/ui", "Zustand"],
+      "status": "En production",
+      "visibility": "private",
+      "year": "2024",
+      "type": "Projet professionnel",
+      "image": "/images/projects/obc-cover.jpg",
+      "screenshots": [
       ],
-      "tags": ["React", "Node.js", "TypeScript", "WebSockets", "OpenAI"]
+      "links": { "live": null, "demo": null, "source": null }
     },
     {
-      "title": "Feedback IA · Angular",
-      "description": "Application Angular connectée à une API FastAPI pour afficher des prédictions IA et collecter des feedbacks.",
-      "details": [
-        "Interface utilisateur pour l'affichage des prédictions et la collecte de feedback.",
-        "API robuste avec FastAPI et PostgreSQL.",
-        "Containerisation avec Docker pour un déploiement facile."
+      "id": "feedback-ia-amiad",
+      "title": "Plateforme de Feedback sur Prédictions IA",
+      "description": "Plateforme Angular/FastAPI pour collecter et analyser le feedback utilisateur sur prédictions IA.",
+      "tags": ["Angular", "FastAPI", "PostgreSQL", "Docker", "Swagger"],
+      "status": "En production",
+      "visibility": "private",
+      "year": "2025",
+      "type": "Projet professionnel",
+      "image": "/images/projects/feedback-ia-cover.jpg",
+      "screenshots": [
+
       ],
-      "tags": ["Angular", "FastAPI", "PostgreSQL", "Docker"]
+      "links": { "live": null, "demo": null, "source": null }
     },
     {
-      "title": "Association Manager · Microservices",
-      "description": "Application web modulaire pour gérer associations, projets, équipes et documents.",
-      "details": [
-        "Développé avec NestJS et Angular, suivant une architecture microservices.",
-        "Gestion des rôles et des documents.",
-        "Persistance des données avec PostgreSQL et containerisation Docker."
+      "id": "ai-assistant-saas",
+      "title": "Assistant IA pour Plateforme SaaS",
+      "description": "Assistant IA temps réel intégré en web et mobile via WebSockets.",
+      "tags": ["Node.js", "TypeScript", "React", "Flutter", "WebSockets", "OpenAI", "Figma"],
+      "status": "En production",
+      "visibility": "private",
+      "year": "2025",
+      "type": "Projet professionnel",
+      "image": "/images/projects/ai-assistant-cover.jpg",
+      "screenshots": [
+
       ],
-      "tags": ["NestJS", "Angular", "PostgreSQL", "Docker"]
+      "links": { "live": null, "demo": null, "source": null }
+    },
+    {
+      "id": "association-manager",
+      "title": "Web App de Gestion d'Association",
+      "description": "Application complète pour gérer membres, projets, rôles et documents.",
+      "tags": ["NestJS", "Angular", "TypeScript", "PostgreSQL", "Docker", "GitHub Actions", "Prometheus", "SonarQube"],
+      "status": "En production",
+      "visibility": "private",
+      "year": "2025",
+      "type": "Projet personnel",
+      "image": "/images/projects/association-manager-cover.jpg",
+      "screenshots": [
+
+      ],
+      "links": { "live": null, "demo": null, "source": null }
+    },
+    {
+      "id": "ecg-arrhythmia-classification",
+      "title": "Classification d'Arythmies Cardiaques (ECG)",
+      "description": "Pipeline complet ECG + RNN TensorFlow pour classification d'arythmies.",
+      "tags": ["Python", "TensorFlow", "Scikit-Learn", "NumPy", "Matplotlib"],
+      "status": "Archivé",
+      "visibility": "private",
+      "year": "2024",
+      "type": "Projet académique",
+      "image": "/images/projects/ecg-classification-cover.jpg",
+      "screenshots": [
+
+      ],
+      "links": { "live": null, "demo": null, "source": null }
+    },
+    {
+      "id": "music-streaming-app",
+      "title": "Application de Streaming de Musique",
+      "description": "Plateforme de streaming avec synchronisation multi-appareils.",
+      "tags": ["Spring Boot", "Angular", "PostgreSQL", "Docker"],
+      "status": "En développement",
+      "visibility": "private",
+      "year": "2025",
+      "type": "Projet personnel",
+      "image": "/images/projects/music-streaming-cover.jpg",
+      "screenshots": [
+
+      ],
+      "links": { "live": null, "demo": null, "source": null }
+    },
+    {
+      "id": "multiplayer-game",
+      "title": "Jeu Multijoueur Temps Réel",
+      "description": "Jeu Python client/serveur avec synchronisation temps réel.",
+      "tags": ["Python", "Sockets TCP", "Pygame", "Threading", "Zlib", "Pickle"],
+      "status": "Archivé",
+      "visibility": "private",
+      "year": "2024",
+      "type": "Projet personnel",
+      "image": "/images/projects/multiplayer-game-cover.jpg",
+      "screenshots": [
+
+      ],
+      "links": { "live": null, "demo": null, "source": null }
+    },
+    {
+      "id": "ios-payment-system",
+      "title": "Système de Paiement iOS (Stripe + RevenueCat)",
+      "description": "Backend Node.js pour gestion des abonnements iOS.",
+      "tags": ["Node.js", "MySQL", "Stripe", "RevenueCat", "Webhooks", "React"],
+      "status": "En production",
+      "visibility": "private",
+      "year": "2025",
+      "type": "Projet professionnel",
+      "image": "/images/projects/ios-payment-cover.jpg",
+      "screenshots": [
+
+      ],
+      "links": { "live": null, "demo": null, "source": null }
     }
-  ]
+  ],
+  "detail_button":{
+    "text": "Aperçu détaillé"
+  },
+  "extend_button":{
+    "text":"Voir tous les projets",
+    "retract_text": "Voir moins"  
+  }, 
+  "section_footer":{
+    "text": "affichés"
+  }
 }

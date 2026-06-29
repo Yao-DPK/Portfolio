@@ -1,8 +1,9 @@
 {
   "title": "Professional Experience",
+  "subtitle": "career path",
   "items": [
     {
-      "title": "Software Engineer (Intern)",
+      "title": "Software Engineer Intern",
       "company": "ID Protect",
       "period": "Mar 2025 – Sep 2025",
       "description": "Startup specializing in digital identity management and digital journey security.",
@@ -15,7 +16,7 @@
       "tags": ["Node.js", "React", "TypeScript", "WebSockets", "OpenAI", "Stripe"]
     },
     {
-      "title": "Fullstack Developer (Intern)",
+      "title": "Fullstack Developer",
       "company": "Linking Industrie et Developpement",
       "period": "Jun 2024 – Sep 2024",
       "description": "Web & mobile development for industrial linking solutions.",
@@ -26,5 +27,8 @@
       ],
       "tags": ["Flutter", "React Native", "Node.js", "Express", "Agile"]
     }
-  ]
+  ],
+  "section_footer":{
+    "end": "end"
+  }
 }

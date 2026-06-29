@@ -1,6 +1,9 @@
 {
-  "title": "Technologies que j'utilise",
+  "title": "Technologies & Outils",
   "description": "Un aperçu de mon expertise technique",
+  "categories_count_one": "{{count}} technologie",
+  "categories_count_other": "{{count}} technologies",
+  "all": "Tous",
   "categories": {
     "frontend": {
       "name": "Frontend",
@@ -11,7 +14,7 @@
       "description": "APIs & services robustes"
     },
     "database": {
-      "name": "Base de données",
+      "name": "Database",
       "description": "Gestion et modélisation des données"
     },
     "devops": {
@@ -28,16 +31,19 @@
     "nextjs": "Next.js",
     "angular": "Angular",
     "tailwind": "Tailwind CSS",
+    "framer": "Framer Motion",
     "nodejs": "Node.js",
     "nestjs": "NestJS",
     "express": "Express",
     "fastapi": "FastAPI",
+    "spring": "Spring Boot",
     "postgresql": "PostgreSQL",
     "mysql": "MySQL",
     "docker": "Docker",
     "github": "GitHub Actions",
     "linux": "Linux",
     "websockets": "WebSockets",
+    "postman": "Postman",
     "flutter": "Flutter",
     "reactnative": "React Native"
   }

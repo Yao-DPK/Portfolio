@@ -9,6 +9,7 @@ import frHero from './locales/fr/hero.json';
 import frTechnologies from './locales/fr/technologies.json';
 import frExperience from './locales/fr/experience.json';
 import frProjects from './locales/fr/projects.json';
+import frProjectsDetails from './locales/fr/project-details.json';
 import frFooter from './locales/fr/footer.json';
 import frContact from './locales/fr/contact.json';
 
@@ -18,6 +19,7 @@ import enHero from './locales/en/hero.json';
 import enTechnologies from './locales/en/technologies.json';
 import enExperience from './locales/en/experience.json';
 import enProjects from './locales/en/projects.json';
+import enProjectsDetails from './locales/fr/project-details.json';
 import enFooter from './locales/en/footer.json';
 import enContact from './locales/en/contact.json';
 
@@ -30,6 +32,7 @@ export const resources = {
     technologies: frTechnologies,
     experience: frExperience,
     projects: frProjects,
+    'project-details': frProjectsDetails,
     footer: frFooter,
     contact: frContact,
   },
@@ -39,6 +42,7 @@ export const resources = {
     technologies: enTechnologies,
     experience: enExperience,
     projects: enProjects,
+    'project-details': enProjectsDetails,
     footer: enFooter,
     contact: enContact,
 

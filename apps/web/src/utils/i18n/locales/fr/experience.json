@@ -1,8 +1,9 @@
 {
   "title": "Expériences professionnelles",
+  "subtitle": "parcours professionnel",
   "items": [
     {
-      "title": "Ingénieur Logiciel (Stage)",
+      "title": "Software Engineer Intern",
       "company": "ID Protect",
       "period": "Mar 2025 – Sep 2025",
       "description": "Startup spécialisée dans la gestion d'identité numérique et la sécurité des parcours digitaux.",
@@ -15,7 +16,7 @@
       "tags": ["Node.js", "React", "TypeScript", "WebSockets", "OpenAI", "Stripe"]
     },
     {
-      "title": "Développeur Fullstack (Stage)",
+      "title": "Fullstack Developer",
       "company": "Linking Industrie et Developpement",
       "period": "Juin 2024 – Sep 2024",
       "description": "Développement web & mobile pour des solutions de linking industriel.",
@@ -26,5 +27,8 @@
       ],
       "tags": ["Flutter", "React Native", "Node.js", "Express", "Agile"]
     }
-  ]
+  ],
+  "section_footer":{
+    "end": "fin"
+  }
 }

@@ -1,7 +1,11 @@
 {
-  "title": "Technologies I work with",
-  "description": "An overview of my technical expertise",
+  "title": "Tech Stack",
+  "description": "Technologies I work with",
+  "categories_count_one": "{{count}} technology",
+  "categories_count_other": "{{count}} technologies",
+  "all": "All",
   "categories": {
+    "all": "All",
     "frontend": {
       "name": "Frontend",
       "description": "Reactive user interfaces"
@@ -15,7 +19,7 @@
       "description": "Data management & modeling"
     },
     "devops": {
-      "name": "DevOps & Tools",
+      "name": "DevOps",
       "description": "Deployment & infrastructure"
     },
     "mobile": {

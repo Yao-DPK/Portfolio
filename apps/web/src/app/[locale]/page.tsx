@@ -6,7 +6,7 @@ import LanguageToggle from '@/components/LanguageToggle';
 import HeroPreview from '@/components/sections/previews/HeroPreview';
 import TechnologiesPreview from '@/components/sections/previews/TechnologiesPreview';
 import ExperiencePreview from '@/components/sections/previews/ExperiencePreview';
-import ProjectsPreview from '@/components/sections/previews/ProjectsPreview';
+import ProjectsPreview from '@/components/sections/projects/ProjectsPreview';
 import ContactPreview from '@/components/sections/previews/ContactPreview'; // ✅ Nouvel import
 import VisitorCounter from '@/components/VisitorCounter';
 import FooterPreview from '@/components/sections/previews/FooterPreview';
