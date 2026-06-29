@@ -1,27 +1,25 @@
 {
-  "version": 2,
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "version": 3,
+  "installCommand": "npm install --workspaces=false",
   "builds": [
     {
       "src": "apps/web/package.json",
       "use": "@vercel/next"
     },
     {
-      "src": "apps/api/package.json",
+      "src": "apps/api/src/main.ts",
       "use": "@vercel/node"
     }
   ],
   "routes": [
     {
       "src": "/api/(.*)",
-      "dest": "apps/api/src/main"
+      "dest": "apps/api/src/main.ts"
     },
     {
       "src": "/(.*)",
       "dest": "apps/web"
     }
-  ],
-  "framework": "nextjs",
-  "monorepo": true,
-  "installCommand": "npm install",
-  "buildCommand": "npm run build"
+  ]
 }
