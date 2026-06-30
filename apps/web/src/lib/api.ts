@@ -8,7 +8,7 @@ export interface VisitorStats {
 }
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
-console.log(API_URL);
+//console.log(API_URL);
 export async function getVisitorStats(): Promise<VisitorStats> {
   const res = await fetch(`${API_URL}/visitor`, {
     cache: 'no-store', // Évite la mise en cache

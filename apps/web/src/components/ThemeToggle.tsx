@@ -6,8 +6,8 @@ export const ThemeToggle = () => {
   const { theme, toggleTheme } = useTheme();
 
   // Log de débogage
-  console.log('Thème actuel :', theme);
-  console.log('Classe dark sur html :', document.documentElement.classList.contains('dark'));
+  //console.log('Thème actuel :', theme);
+  //console.log('Classe dark sur html :', document.documentElement.classList.contains('dark'));
 
   return (
     <button

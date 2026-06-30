@@ -7,7 +7,7 @@ import GridBackground from './GridBackground';
 const GridBackgroundWrapper = memo(() => {
   const renderCount = useRef(0);
   renderCount.current++;
-  console.log(`GridBackground rendu ${renderCount.current} fois`);
+  //console.log(`GridBackground rendu ${renderCount.current} fois`);
 
   return (
     <div className="fixed inset-0 z-0 pointer-events-none">
@@ -15,7 +15,9 @@ const GridBackgroundWrapper = memo(() => {
         gridSize={48}
         dotCount={5}
         trailLength={30}
-        speed={1}
+        speed={1.2}
+        enablePulses={true}   // active/désactive les pulses
+        enableDots={true}     // active/désactive les points voyageurs
       />
     </div>
   );

@@ -3,6 +3,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 
+// ─── Types ───────────────────────────────────────────────
 interface Dot {
   x: number;
   y: number;
@@ -14,15 +15,23 @@ interface Dot {
   direction: 'horizontal' | 'vertical';
   nextIntersectionX: number;
   nextIntersectionY: number;
-  // ✅ État d'attraction
   attracted: boolean;
-  // ✅ Orbite
   orbitAngle: number;
   orbitRadius: number;
   orbitSpeed: number;
-  // ✅ Position orbitale calculée
   orbitX: number;
   orbitY: number;
+}
+
+interface Pulse {
+  id: number;
+  startX: number;
+  startY: number;
+  direction: 'up' | 'down' | 'left' | 'right';
+  step: number;
+  maxSteps: number;
+  progress: number; // 0..1
+  active: boolean;
 }
 
 interface GridBackgroundProps {
@@ -31,10 +40,13 @@ interface GridBackgroundProps {
   dotCount?: number;
   trailLength?: number;
   speed?: number;
-  attractRadius?: number;      // Rayon d'attraction
-  orbitRadiusMin?: number;      // Rayon d'orbite min
-  orbitRadiusMax?: number;      // Rayon d'orbite max
-  orbitSpeed?: number;          // Vitesse orbitale (rad/frame)
+  attractRadius?: number;
+  orbitRadiusMin?: number;
+  orbitRadiusMax?: number;
+  orbitSpeed?: number;
+  // ✅ Nouveaux toggles
+  enablePulses?: boolean;
+  enableDots?: boolean;
 }
 
 export default function GridBackground({
@@ -47,23 +59,23 @@ export default function GridBackground({
   orbitRadiusMin = 120,
   orbitRadiusMax = 220,
   orbitSpeed = 0.015,
+  enablePulses = true,
+  enableDots = true,
 }: GridBackgroundProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isDark, setIsDark] = useState(false);
   const animationRef = useRef<number>(0);
   const dotsRef = useRef<Dot[]>([]);
+  const pulsesRef = useRef<Pulse[]>([]);
   const frameRef = useRef(0);
   const dimensionsRef = useRef({ width: 0, height: 0 });
   const mouseTargetRef = useRef<{ x: number; y: number } | null>(null);
-  const pulseRef = useRef(0);
+  const pulseCooldownRef = useRef(0);
+  const randomPulseTimerRef = useRef(0);
+  const nextPulseIdRef = useRef(0);
 
   const DOT_COLORS = [
-    '#2563EB', // bleu roi
-    '#7C3AED', // violet
-    '#059669', // émeraude
-    '#DC2626', // rouge
-    '#D97706', // orange
-    '#0891B2', // cyan
+    '#2563EB', '#7C3AED', '#059669', '#DC2626', '#D97706', '#0891B2',
   ];
 
   // ─── Détection du thème ────────────────────────────────
@@ -86,9 +98,10 @@ export default function GridBackground({
       const canvas = canvasRef.current;
       if (!canvas) return;
       const rect = canvas.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      mouseTargetRef.current = { x, y };
+      mouseTargetRef.current = {
+        x: e.clientX - rect.left,
+        y: e.clientY - rect.top,
+      };
     };
     const handleMouseLeave = () => {
       mouseTargetRef.current = null;
@@ -101,7 +114,7 @@ export default function GridBackground({
     };
   }, []);
 
-  // ─── Initialisation ─────────────────────────────────────
+  // ─── Initialisation des points ─────────────────────────
   useEffect(() => {
     const initDots = (width: number, height: number) => {
       const cols = Math.floor(width / gridSize);
@@ -176,6 +189,37 @@ export default function GridBackground({
     return () => window.removeEventListener('resize', resize);
   }, []);
 
+  // ─── Fonctions de déclenchement des pulses ─────────────
+  const triggerPulse = (x: number, y: number) => {
+    if (!enablePulses) return;
+    // Arrondir à l'intersection la plus proche
+    const col = Math.round((x - gridSize / 2) / gridSize);
+    const row = Math.round((y - gridSize / 2) / gridSize);
+    const startX = col * gridSize + gridSize / 2;
+    const startY = row * gridSize + gridSize / 2;
+
+    // Vérifier que l'intersection est dans le canvas
+    const { width, height } = dimensionsRef.current;
+    if (startX < 0 || startX > width || startY < 0 || startY > height) return;
+
+    const maxSteps = 8;
+    const directions = ['up', 'down', 'left', 'right'] as const;
+    const id = nextPulseIdRef.current++;
+
+    for (const dir of directions) {
+      pulsesRef.current.push({
+        id,
+        startX,
+        startY,
+        direction: dir,
+        step: 0,
+        maxSteps,
+        progress: 0,
+        active: true,
+      });
+    }
+  };
+
   // ─── Animation ──────────────────────────────────────────
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -183,13 +227,18 @@ export default function GridBackground({
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    const chooseNewDirection = (
-      dot: Dot,
-      cols: number,
-      rows: number,
-      targetX?: number,
-      targetY?: number
-    ) => {
+    // ─── Helpers pour les directions ──────────────────────
+    const getDirectionDelta = (dir: string) => {
+      switch (dir) {
+        case 'up': return { dx: 0, dy: -1 };
+        case 'down': return { dx: 0, dy: 1 };
+        case 'left': return { dx: -1, dy: 0 };
+        case 'right': return { dx: 1, dy: 0 };
+        default: return { dx: 0, dy: 0 };
+      }
+    };
+
+    const chooseNewDirection = (dot: Dot, cols: number, rows: number, targetX?: number, targetY?: number) => {
       const currentCol = Math.round((dot.x - gridSize / 2) / gridSize);
       const currentRow = Math.round((dot.y - gridSize / 2) / gridSize);
 
@@ -226,6 +275,7 @@ export default function GridBackground({
       }
     };
 
+    // ─── Boucle principale ────────────────────────────────
     const animate = () => {
       const width = canvas.width;
       const height = canvas.height;
@@ -233,20 +283,61 @@ export default function GridBackground({
       const rows = Math.floor(height / gridSize);
       frameRef.current++;
 
-      // Pulsation
-      pulseRef.current += 0.02;
-      const pulse = Math.sin(pulseRef.current) * 0.5 + 0.5;
+      // Pulsation globale pour le fond
+      const pulse = Math.sin(frameRef.current * 0.02) * 0.5 + 0.5;
+
+      // ── Gestion des pulses ──
+      if (enablePulses) {
+        // Déclenchement aléatoire (toutes les 2-4 secondes)
+        randomPulseTimerRef.current += 1 / 60;
+        if (randomPulseTimerRef.current > 2 + Math.random() * 2) {
+          randomPulseTimerRef.current = 0;
+          const randCol = Math.floor(Math.random() * cols);
+          const randRow = Math.floor(Math.random() * rows);
+          const x = randCol * gridSize + gridSize / 2;
+          const y = randRow * gridSize + gridSize / 2;
+          triggerPulse(x, y);
+        }
+
+        // Déclenchement souris (si souris sur une intersection)
+        const mouse = mouseTargetRef.current;
+        if (mouse) {
+          pulseCooldownRef.current -= 1 / 60;
+          const nearestCol = Math.round((mouse.x - gridSize / 2) / gridSize);
+          const nearestRow = Math.round((mouse.y - gridSize / 2) / gridSize);
+          const ix = nearestCol * gridSize + gridSize / 2;
+          const iy = nearestRow * gridSize + gridSize / 2;
+          const distToIntersection = Math.hypot(mouse.x - ix, mouse.y - iy);
+          if (distToIntersection < gridSize * 0.6 && pulseCooldownRef.current <= 0) {
+            pulseCooldownRef.current = 1; // cooldown 1 seconde
+            triggerPulse(ix, iy);
+          }
+        }
+
+        // Mise à jour des pulses
+        for (const pulse of pulsesRef.current) {
+          if (!pulse.active) continue;
+          // Avancer d'un pas par frame (on peut ajuster la vitesse)
+          pulse.step += 0.3; // vitesse de propagation
+          pulse.progress = Math.min(pulse.step / pulse.maxSteps, 1);
+          if (pulse.step >= pulse.maxSteps) {
+            pulse.active = false;
+          }
+        }
+
+        // Nettoyer les pulses inactifs
+        pulsesRef.current = pulsesRef.current.filter(p => p.active);
+      }
 
       // ── Effacer ──
       ctx.clearRect(0, 0, width, height);
 
-      // ── Fond (amélioré dark mode) ──
+      // ── Fond ──
       const bgGradient = ctx.createRadialGradient(
         width / 2, height / 2, 0,
         width / 2, height / 2, Math.max(width, height) * 0.7
       );
       if (isDark) {
-        // ✅ Dark mode : fond plus lumineux
         bgGradient.addColorStop(0, '#0f1a2e');
         bgGradient.addColorStop(0.5, '#0a1525');
         bgGradient.addColorStop(1, '#050a14');
@@ -257,7 +348,7 @@ export default function GridBackground({
       ctx.fillStyle = bgGradient;
       ctx.fillRect(0, 0, width, height);
 
-      // ── Effet pulsation sur le fond (en dark mode) ──
+      // ── Effet pulsation du fond ──
       if (isDark) {
         const pulseGlow = ctx.createRadialGradient(
           width / 2, height / 2, 0,
@@ -270,21 +361,17 @@ export default function GridBackground({
         ctx.fillRect(0, 0, width, height);
       }
 
-      // ── Grille (effet écran d'ordinateur) ──
-      // Lignes principales plus épaisses et lumineuses en dark mode
+      // ── Grille ──
       const gridColor = isDark
         ? `rgba(80, 160, 255, ${0.12 + pulse * 0.05})`
         : 'rgba(37, 99, 235, 0.10)';
       const gridColorStrong = isDark
         ? `rgba(100, 190, 255, ${0.35 + pulse * 0.1})`
         : 'rgba(37, 99, 235, 0.20)';
-
-      // Sous-grille (effet écran)
       const subGridColor = isDark
         ? `rgba(60, 140, 255, ${0.06 + pulse * 0.03})`
         : 'rgba(37, 99, 235, 0.05)';
 
-      // Lignes verticales principales
       ctx.lineWidth = isDark ? 1.2 : 1;
       for (let x = 0; x <= width; x += gridSize) {
         ctx.beginPath();
@@ -293,8 +380,6 @@ export default function GridBackground({
         ctx.strokeStyle = x % (gridSize * 2) === 0 ? gridColorStrong : gridColor;
         ctx.stroke();
       }
-
-      // Lignes horizontales principales
       for (let y = 0; y <= height; y += gridSize) {
         ctx.beginPath();
         ctx.moveTo(0, y);
@@ -303,7 +388,7 @@ export default function GridBackground({
         ctx.stroke();
       }
 
-      // Sous-grille (lignes fines)
+      // Sous-grille
       if (isDark) {
         ctx.lineWidth = 0.5;
         const subGridSize = gridSize / 4;
@@ -325,148 +410,169 @@ export default function GridBackground({
         }
       }
 
-      // ── Effet de lueur sur la grille (dark mode) ──
-      if (isDark) {
-        const glowAlpha = 0.03 + pulse * 0.03;
-        const glowGradient = ctx.createRadialGradient(
-          width / 2, height / 2, 0,
-          width / 2, height / 2, Math.max(width, height) * 0.6
-        );
-        glowGradient.addColorStop(0, `rgba(100, 180, 255, ${glowAlpha})`);
-        glowGradient.addColorStop(1, 'rgba(100, 180, 255, 0)');
-        ctx.fillStyle = glowGradient;
-        ctx.fillRect(0, 0, width, height);
+      // ── Dessiner les pulses ──
+      if (enablePulses) {
+        const pulseColor = isDark ? '#60A5FA' : '#2563EB';
+        for (const pulse of pulsesRef.current) {
+          const { startX, startY, direction, step, maxSteps, progress } = pulse;
+          if (step <= 0) continue;
+
+          const { dx, dy } = getDirectionDelta(direction);
+          const currentStep = Math.min(step, maxSteps);
+          const endX = startX + dx * currentStep * gridSize;
+          const endY = startY + dy * currentStep * gridSize;
+
+          // Opacité décroissante
+          const alpha = 0.8 * (1 - progress);
+
+          // Ligne principale
+          ctx.beginPath();
+          ctx.moveTo(startX, startY);
+          ctx.lineTo(endX, endY);
+          ctx.strokeStyle = `rgba(37, 99, 235, ${alpha})`;
+          ctx.lineWidth = 2 + 2 * (1 - progress);
+          ctx.shadowColor = pulseColor;
+          ctx.shadowBlur = 20 * (1 - progress);
+          ctx.stroke();
+
+          // Glow autour de la ligne
+          const glowGradient = ctx.createLinearGradient(startX, startY, endX, endY);
+          glowGradient.addColorStop(0, `rgba(37, 99, 235, ${alpha * 0.4})`);
+          glowGradient.addColorStop(1, `rgba(37, 99, 235, 0)`);
+          ctx.shadowBlur = 0;
+          ctx.lineWidth = 8 * (1 - progress);
+          ctx.strokeStyle = glowGradient;
+          ctx.stroke();
+
+          // Point lumineux en tête
+          if (progress < 0.95) {
+            const headX = startX + dx * currentStep * gridSize;
+            const headY = startY + dy * currentStep * gridSize;
+            ctx.shadowColor = pulseColor;
+            ctx.shadowBlur = 30;
+            ctx.fillStyle = `rgba(255, 255, 255, ${alpha * 0.8})`;
+            ctx.beginPath();
+            ctx.arc(headX, headY, 3, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.shadowBlur = 0;
+          }
+        }
       }
 
-      // ── Gestion des points ──
-      const mouse = mouseTargetRef.current;
-
-      for (const dot of dotsRef.current) {
-        if (mouse) {
-          const dx = mouse.x - dot.x;
-          const dy = mouse.y - dot.y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-
-          // Rayon d'orbite = distance fixe autour du curseur
-          const ORBIT_RADIUS = 150;
-          const ATTRACTION_RADIUS = attractRadius;
-
-          if (dist < ATTRACTION_RADIUS) {
-            dot.attracted = true;
-
-            if (dist > ORBIT_RADIUS) {
-              // ✅ PHASE ATTRACTION : se diriger vers le curseur
-              chooseNewDirection(dot, cols, rows, mouse.x, mouse.y);
+      // ── Points voyageurs ──
+      if (enableDots) {
+        const mouse = mouseTargetRef.current;
+        for (const dot of dotsRef.current) {
+          // Logique d'attraction/orbite inchangée
+          if (mouse) {
+            const dx = mouse.x - dot.x;
+            const dy = mouse.y - dot.y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            const ORBIT_RADIUS = 150;
+            if (dist < attractRadius) {
+              dot.attracted = true;
+              if (dist > ORBIT_RADIUS) {
+                chooseNewDirection(dot, cols, rows, mouse.x, mouse.y);
+              } else {
+                dot.orbitAngle += dot.orbitSpeed;
+                dot.orbitX = mouse.x + Math.cos(dot.orbitAngle) * ORBIT_RADIUS;
+                dot.orbitY = mouse.y + Math.sin(dot.orbitAngle) * ORBIT_RADIUS;
+                chooseNewDirection(dot, cols, rows, dot.orbitX, dot.orbitY);
+              }
             } else {
-              // ✅ PHASE ORBITE : tourner autour du curseur
-              // Mettre à jour l'angle orbital
-              dot.orbitAngle += dot.orbitSpeed;
-
-              // Calculer la position orbitale (cercle parfait)
-              dot.orbitX = mouse.x + Math.cos(dot.orbitAngle) * ORBIT_RADIUS;
-              dot.orbitY = mouse.y + Math.sin(dot.orbitAngle) * ORBIT_RADIUS;
-
-              // Se diriger vers la position orbitale
-              chooseNewDirection(dot, cols, rows, dot.orbitX, dot.orbitY);
+              if (dot.attracted) {
+                dot.attracted = false;
+                chooseNewDirection(dot, cols, rows);
+              }
             }
-          } else {
-            if (dot.attracted) {
-              dot.attracted = false;
+          }
+
+          // Déplacement
+          const dx2 = dot.nextIntersectionX - dot.x;
+          const dy2 = dot.nextIntersectionY - dot.y;
+          const distance = Math.sqrt(dx2 * dx2 + dy2 * dy2);
+          if (distance < 1) {
+            dot.x = dot.nextIntersectionX;
+            dot.y = dot.nextIntersectionY;
+            if (dot.attracted && mouse) {
+              const distToMouse = Math.sqrt(
+                (mouse.x - dot.x) ** 2 + (mouse.y - dot.y) ** 2
+              );
+              if (distToMouse < 180) {
+                chooseNewDirection(dot, cols, rows, dot.orbitX, dot.orbitY);
+              } else {
+                chooseNewDirection(dot, cols, rows, mouse.x, mouse.y);
+              }
+            } else {
               chooseNewDirection(dot, cols, rows);
             }
-          }
-        }
-
-
-        // ── Déplacement ──
-        const dx = dot.nextIntersectionX - dot.x;
-        const dy = dot.nextIntersectionY - dot.y;
-        const distance = Math.sqrt(dx * dx + dy * dy);
-
-        if (distance < 1) {
-          dot.x = dot.nextIntersectionX;
-          dot.y = dot.nextIntersectionY;
-          if (dot.attracted && mouse) {
-            // Recalculer la direction après avoir atteint l'intersection
-            const distToMouse = Math.sqrt(
-              (mouse.x - dot.x) ** 2 + (mouse.y - dot.y) ** 2
-            );
-            if (distToMouse < 180) {
-              // En orbite, continuer vers la position orbitale
-              chooseNewDirection(dot, cols, rows, dot.orbitX, dot.orbitY);
-            } else {
-              chooseNewDirection(dot, cols, rows, mouse.x, mouse.y);
-            }
           } else {
-            chooseNewDirection(dot, cols, rows);
+            const step = dot.speed;
+            dot.x += (dx2 / distance) * Math.min(step, distance);
+            dot.y += (dy2 / distance) * Math.min(step, distance);
           }
-        } else {
-          const step = dot.speed;
-          dot.x += (dx / distance) * Math.min(step, distance);
-          dot.y += (dy / distance) * Math.min(step, distance);
-        }
 
-        // ── Trace ──
-        dot.trail.push({ x: dot.x, y: dot.y });
-        if (dot.trail.length > trailLength) dot.trail.shift();
+          // Trace
+          dot.trail.push({ x: dot.x, y: dot.y });
+          if (dot.trail.length > trailLength) dot.trail.shift();
 
-        const color = dot.color;
+          const color = dot.color;
 
-        // ── Dessiner la trace ──
-        if (dot.trail.length > 1) {
-          for (let i = 1; i < dot.trail.length; i++) {
-            const alpha = (i / dot.trail.length) * 0.85;
-            const width = (i / dot.trail.length) * 5 + 1;
-            ctx.beginPath();
-            ctx.moveTo(dot.trail[i - 1].x, dot.trail[i - 1].y);
-            ctx.lineTo(dot.trail[i].x, dot.trail[i].y);
-            const opacity = Math.floor(alpha * 180).toString(16).padStart(2, '0');
-            ctx.strokeStyle = color + opacity;
-            ctx.lineWidth = width;
-            ctx.lineCap = 'round';
-            ctx.stroke();
+          // Dessin trace
+          if (dot.trail.length > 1) {
+            for (let i = 1; i < dot.trail.length; i++) {
+              const alpha = (i / dot.trail.length) * 0.85;
+              const width = (i / dot.trail.length) * 5 + 1;
+              ctx.beginPath();
+              ctx.moveTo(dot.trail[i - 1].x, dot.trail[i - 1].y);
+              ctx.lineTo(dot.trail[i].x, dot.trail[i].y);
+              const opacity = Math.floor(alpha * 180).toString(16).padStart(2, '0');
+              ctx.strokeStyle = color + opacity;
+              ctx.lineWidth = width;
+              ctx.lineCap = 'round';
+              ctx.stroke();
+            }
           }
+
+          // Glow
+          const glowRadius = dot.attracted ? 90 : 70;
+          const glowGradient = ctx.createRadialGradient(
+            dot.x, dot.y, 0,
+            dot.x, dot.y, glowRadius
+          );
+          glowGradient.addColorStop(0, color + 'cc');
+          glowGradient.addColorStop(0.3, color + '66');
+          glowGradient.addColorStop(1, 'transparent');
+          ctx.fillStyle = glowGradient;
+          ctx.beginPath();
+          ctx.arc(dot.x, dot.y, glowRadius, 0, Math.PI * 2);
+          ctx.fill();
+
+          // Point
+          ctx.shadowColor = color;
+          ctx.shadowBlur = 35;
+          ctx.fillStyle = '#ffffff';
+          ctx.beginPath();
+          ctx.arc(dot.x, dot.y, 4, 0, Math.PI * 2);
+          ctx.fill();
+
+          ctx.shadowBlur = 20;
+          ctx.fillStyle = color;
+          ctx.beginPath();
+          ctx.arc(dot.x, dot.y, 3, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.shadowBlur = 0;
+
+          ctx.fillStyle = 'rgba(255,255,255,0.9)';
+          ctx.beginPath();
+          ctx.arc(dot.x - 1.5, dot.y - 1.5, 1, 0, Math.PI * 2);
+          ctx.fill();
         }
-
-        // ── Glow ──
-        const glowRadius = dot.attracted ? 90 : 70;
-        const glowGradient = ctx.createRadialGradient(
-          dot.x, dot.y, 0,
-          dot.x, dot.y, glowRadius
-        );
-        glowGradient.addColorStop(0, color + 'cc');
-        glowGradient.addColorStop(0.3, color + '66');
-        glowGradient.addColorStop(1, 'transparent');
-        ctx.fillStyle = glowGradient;
-        ctx.beginPath();
-        ctx.arc(dot.x, dot.y, glowRadius, 0, Math.PI * 2);
-        ctx.fill();
-
-        // ── Point ──
-        ctx.shadowColor = color;
-        ctx.shadowBlur = 35;
-
-        ctx.fillStyle = '#ffffff';
-        ctx.beginPath();
-        ctx.arc(dot.x, dot.y, 4, 0, Math.PI * 2);
-        ctx.fill();
-
-        ctx.shadowBlur = 20;
-        ctx.fillStyle = color;
-        ctx.beginPath();
-        ctx.arc(dot.x, dot.y, 3, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.shadowBlur = 0;
-
-        ctx.fillStyle = 'rgba(255,255,255,0.9)';
-        ctx.beginPath();
-        ctx.arc(dot.x - 1.5, dot.y - 1.5, 1, 0, Math.PI * 2);
-        ctx.fill();
       }
 
       // ── Cercle d'attraction ──
+      const mouse = mouseTargetRef.current;
       if (mouse) {
-        // Cercle principal
         ctx.beginPath();
         ctx.arc(mouse.x, mouse.y, attractRadius, 0, Math.PI * 2);
         ctx.strokeStyle = isDark
@@ -475,7 +581,6 @@ export default function GridBackground({
         ctx.lineWidth = 1;
         ctx.stroke();
 
-        // Cercle orbital (seuil)
         ctx.beginPath();
         ctx.arc(mouse.x, mouse.y, 180, 0, Math.PI * 2);
         ctx.strokeStyle = isDark
@@ -485,7 +590,6 @@ export default function GridBackground({
         ctx.stroke();
         ctx.setLineDash([]);
 
-        // Point central
         ctx.fillStyle = isDark
           ? 'rgba(255,255,255,0.05)'
           : 'rgba(0,0,0,0.03)';
@@ -530,7 +634,7 @@ export default function GridBackground({
         cancelAnimationFrame(animationRef.current);
       }
     };
-  }, [isDark, gridSize, trailLength, attractRadius, speed, orbitRadiusMin, orbitRadiusMax, orbitSpeed]);
+  }, [isDark, gridSize, trailLength, attractRadius, speed, orbitRadiusMin, orbitRadiusMax, orbitSpeed, enablePulses, enableDots]);
 
   return (
     <canvas

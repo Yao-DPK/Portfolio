@@ -6,25 +6,25 @@ const locales = ['fr', 'en'] as const;
 const defaultLocale = 'fr' as const;
 type Locale = (typeof locales)[number];
 
-console.log('🔥 PROXY.TS CHARGÉ !');
+/* console.log('🔥 PROXY.TS CHARGÉ !');
 console.log('📦 Locales supportées :', locales.join(', '));
 console.log('📦 Locale par défaut :', defaultLocale);
-
+ */
 export function proxy(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
-  console.log(`🔵 Proxy exécuté pour : ${pathname}`);
+  //console.log(`🔵 Proxy exécuté pour : ${pathname}`);
 
   const pathnameHasLocale = locales.some(
     (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
   );
 
   if (pathnameHasLocale) {
-    console.log(`✅ Locale déjà présente, on laisse passer : ${pathname}`);
+    //console.log(`✅ Locale déjà présente, on laisse passer : ${pathname}`);
     return NextResponse.next();
   }
 
   const url = new URL(`/${defaultLocale}${pathname}`, request.url);
-  console.log(`🔄 Redirection vers : ${url.toString()}`);
+  //console.log(`🔄 Redirection vers : ${url.toString()}`);
   return NextResponse.redirect(url);
 }
 

@@ -76,11 +76,11 @@ export async function POST(request: NextRequest) {
     // });
 
     // ─── Mode développement (log seulement) ────────
-    console.log('📧 Nouveau message de contact :');
+    /* console.log('📧 Nouveau message de contact :');
     console.log(`👤 Nom: ${name}`);
     console.log(`📧 Email: ${email}`);
     console.log(`📝 Sujet: ${subject}`);
-    console.log(`💬 Message: ${message}`);
+    console.log(`💬 Message: ${message}`); */
 
     // Simuler un délai d'envoi
     await new Promise((resolve) => setTimeout(resolve, 1000));
