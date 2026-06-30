@@ -3,7 +3,7 @@
 
 import { useTranslation } from 'react-i18next';
 import Image from 'next/image';
-import { EmailIcon } from '@/components/icons';
+import { EmailIcon, GitHubIcon, LinkedInIcon } from '@/components/icons';
 import GithubIcon from '@/components/icons/githubIcon';
 
 export default function HeroPreview() {
@@ -22,7 +22,7 @@ export default function HeroPreview() {
         <div className="relative z-10 grid grid-cols-1 md:grid-cols-[auto_1fr] gap-8 md:gap-12 px-6 md:px-10 py-8 md:py-12 items-center">
           
           {/* Photo de profil */}
-          <div className="flex justify-center md:justify-start">
+          <div className="flex flex-col justify-center  md:justify-start">
             <div className="relative w-40 h-40 md:w-48 md:h-48 lg:w-56 lg:h-56 rounded-full overflow-hidden border-4 border-[var(--accent)]/30 shadow-xl shadow-[var(--accent)]/10 transition-all duration-300 group">
               <Image
                 src="/images/profile/profile.jpg"
@@ -34,6 +34,39 @@ export default function HeroPreview() {
               />
               {/* Effet de lueur subtil */}
               <div className="absolute inset-0 bg-gradient-to-t from-[var(--accent)]/5 via-transparent to-transparent pointer-events-none" />
+            </div>
+            <div className='relative mb-2 mt-2 justify-center items-center '>
+              <a
+                href="mailto:yao.konan2709@gmail.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex text-[var(--text-secondary)] hover:text-[var(--accent)]  m-1
+                 items-center gap-1.5 px-4 py-2 text-sm font-medium text-[var(--foreground)] bg-[var(--card-border)]/30 
+                 hover:bg-[var(--accent)]/10 rounded-full border border-[var(--card-border)] hover:border-[var(--accent)]/30 transition-all duration-300"
+              >
+                <EmailIcon />
+              
+              </a>
+              <a
+                href="https://github.com/Yao-DPK"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex text-[var(--text-secondary)] hover:text-[var(--accent)]  m-1
+                 items-center gap-1.5 px-4 py-2 text-sm font-medium text-[var(--foreground)] bg-[var(--card-border)]/30 
+                 hover:bg-[var(--accent)]/10 rounded-full border border-[var(--card-border)] hover:border-[var(--accent)]/30 transition-all duration-300"
+              > 
+                <GitHubIcon />
+              </a>
+              <a
+                href="https://linkedin.com/in/yaokonan"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex text-[var(--text-secondary)] hover:text-[var(--accent)]  m-1
+                 items-center gap-1.5 px-4 py-2 text-sm font-medium text-[var(--foreground)] bg-[var(--card-border)]/30 
+                 hover:bg-[var(--accent)]/10 rounded-full border border-[var(--card-border)] hover:border-[var(--accent)]/30 transition-all duration-300"
+              >
+                <LinkedInIcon />
+              </a>
             </div>
           </div>
 
@@ -87,24 +120,7 @@ export default function HeroPreview() {
                 <span className="text-base">📄</span>
                 {t('cta.resume')}
               </a>
-              <a
-                href="https://github.com/Yao-DPK"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 px-4 py-2 text-sm font-medium text-[var(--foreground)] bg-[var(--card-border)]/30 hover:bg-[var(--accent)]/10 rounded-full border border-[var(--card-border)] hover:border-[var(--accent)]/30 transition-all duration-200"
-              >
-                <span className="text-base"><GithubIcon /></span>
-                GitHub
-              </a>
-              <a
-                href="https://linkedin.com/in/yaokonan"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 px-4 py-2 text-sm font-medium text-[var(--foreground)] bg-[var(--card-border)]/30 hover:bg-[var(--accent)]/10 rounded-full border border-[var(--card-border)] hover:border-[var(--accent)]/30 transition-all duration-200"
-              >
-                <span className="text-base">🔗</span>
-                LinkedIn
-              </a>
+              
             </div>
 
             {/* Séparateur */}
