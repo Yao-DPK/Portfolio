@@ -16,8 +16,8 @@ const GridBackgroundWrapper = memo(() => {
         dotCount={5}
         trailLength={30}
         speed={1.2}
-        enablePulses={true}   // active/désactive les pulses
-        enableDots={true}     // active/désactive les points voyageurs
+        enablePulses={false}   // active/désactive les pulses
+        enableDots={false}     // active/désactive les points voyageurs
       />
     </div>
   );

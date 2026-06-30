@@ -112,7 +112,7 @@ export default function HeroPreview() {
                 {t('cta.contact')}
               </a>
               <a
-                href="/docs/cv_fr.pdf"
+                href="/docs/CV_fr.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 px-4 py-2 text-sm font-medium text-[var(--foreground)] bg-[var(--card-border)]/30 hover:bg-[var(--accent)]/10 rounded-full border border-[var(--card-border)] hover:border-[var(--accent)]/30 transition-all duration-200"

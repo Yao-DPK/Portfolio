@@ -127,7 +127,7 @@ export default function ContactPreview() {
               💬 {t('info.contactAction')}
             </a>
             <a
-              href="/docs/cv_fr.pdf"
+              href="/docs/CV_fr.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-5 py-2.5 bg-[var(--card-border)]/30 hover:bg-[var(--card-border)]/60 text-[var(--foreground)] text-sm font-medium rounded-lg transition-all duration-200 hover:scale-105"
