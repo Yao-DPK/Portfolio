@@ -8,6 +8,7 @@ import frCommon from './locales/fr/common.json';
 import frHero from './locales/fr/hero.json';
 import frTechnologies from './locales/fr/technologies.json';
 import frExperience from './locales/fr/experience.json';
+import frEducation from './locales/fr/education.json';
 import frProjects from './locales/fr/projects.json';
 import frProjectsDetails from './locales/fr/project-details.json';
 import frFooter from './locales/fr/footer.json';
@@ -18,6 +19,7 @@ import enCommon from './locales/en/common.json';
 import enHero from './locales/en/hero.json';
 import enTechnologies from './locales/en/technologies.json';
 import enExperience from './locales/en/experience.json';
+import enEducation from './locales/en/education.json';
 import enProjects from './locales/en/projects.json';
 import enProjectsDetails from './locales/fr/project-details.json';
 import enFooter from './locales/en/footer.json';
@@ -31,6 +33,7 @@ export const resources = {
     hero: frHero,
     technologies: frTechnologies,
     experience: frExperience,
+    education: frEducation,
     projects: frProjects,
     'project-details': frProjectsDetails,
     footer: frFooter,
@@ -41,6 +44,7 @@ export const resources = {
     hero: enHero,
     technologies: enTechnologies,
     experience: enExperience,
+    education: enEducation,
     projects: enProjects,
     'project-details': enProjectsDetails,
     footer: enFooter,
@@ -55,6 +59,7 @@ export const namespaces = [
   'hero',
   'technologies',
   'experience',
+  'education',
   'projects',
   'footer',
   'contact'

@@ -18,15 +18,15 @@
       "links": { "live": null, "demo": null, "source": null }
     },
     {
-      "id": "feedback-ia-amiad",
-      "title": "AI Predictions Feedback Platform",
-      "description": "Angular/FastAPI platform to collect and analyze user feedback on AI predictions.",
-      "tags": ["Angular", "FastAPI", "PostgreSQL", "Docker", "Swagger"],
+      "id": "ios-payment-system",
+      "title": "iOS Payment System (Stripe + RevenueCat)",
+      "description": "Node.js backend for iOS subscription management.",
+      "tags": ["Node.js", "MySQL", "Stripe", "RevenueCat", "Webhooks", "React"],
       "status": "In production",
       "visibility": "private",
       "year": "2025",
       "type": "Professional project",
-      "image": "/images/projects/feedback-ia-cover.jpg",
+      "image": "/images/projects/ios-payment-cover.jpg",
       "screenshots": [
 
       ],
@@ -107,16 +107,17 @@
       ],
       "links": { "live": null, "demo": null, "source": null }
     },
+    
     {
-      "id": "ios-payment-system",
-      "title": "iOS Payment System (Stripe + RevenueCat)",
-      "description": "Node.js backend for iOS subscription management.",
-      "tags": ["Node.js", "MySQL", "Stripe", "RevenueCat", "Webhooks", "React"],
-      "status": "In production",
+      "id": "feedback-ia-amiad",
+      "title": "AI Predictions Feedback Platform",
+      "description": "Angular/FastAPI platform to collect and analyze user feedback on AI predictions.",
+      "tags": ["Angular", "FastAPI", "PostgreSQL", "Docker", "Swagger"],
+      "status": "Archived",
       "visibility": "private",
       "year": "2025",
       "type": "Professional project",
-      "image": "/images/projects/ios-payment-cover.jpg",
+      "image": "/images/projects/feedback-ia-cover.jpg",
       "screenshots": [
 
       ],

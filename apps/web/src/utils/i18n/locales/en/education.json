@@ -1,0 +1,42 @@
+{
+  "title": "🎓 Academic Background",
+  "description": "A journey of excellence between Côte d'Ivoire and France",
+  "items": [
+    {
+      "period": "2021 – 2025",
+      "title": "Master's Degree in Computer Engineering",
+      "subtitle": "Information Systems",
+      "school": "INP-HB (Côte d'Ivoire) & ESIR - University of Rennes 1 (France)",
+      "location": "Yamoussoukro / Rennes",
+      "description": "Engineering program focused on information systems, software development, architecture, agile methodologies, and complex project management.",
+      "skills": [
+        "Backend: Java Spring Boot, Node.js, NestJS, Python FastAPI",
+        "Frontend: Angular, React, Flutter",
+        "Architectures: microservices, data pipelines, real-time WebSockets",
+        "Databases: PostgreSQL, MySQL, Firebase Firestore",
+        "DevOps: Docker, CI/CD (GitHub Actions, GitLab CI), Prometheus, SonarQube",
+        "AI & Data: TensorFlow (RNN), signal preprocessing, Hyperparams optimization",
+        "Methodologies: Agile/Scrum, unit & e2e testing"
+      ],
+      "projects": [
+        "Cardiac arrhythmia classification (TensorFlow, RNN)",
+        "AI feedback web platform (Angular + FastAPI + PostgreSQL)",
+        "Real-time multiplayer game in Python (advanced networking)"
+      ]
+    },
+    {
+      "period": "2019 – 2021",
+      "title": "Preparatory Classes for Grandes Écoles",
+      "subtitle": "MPSI Track",
+      "school": "INP-HB - Preparatory Classes for Grandes Écoles (CPGE)",
+      "location": "Yamoussoukro, Côte d'Ivoire",
+      "description": "Intensive training in Mathematics, Physics, and Engineering Sciences, preparing for competitive entrance exams to French Grandes Écoles.",
+      "skills": [
+        "Advanced Mathematics",
+        "Physics and Engineering Sciences",
+        "Competitive exam preparation (CCINP, e3a, Mines-Ponts)"
+      ],
+      "projects": []
+    }
+  ]
+}

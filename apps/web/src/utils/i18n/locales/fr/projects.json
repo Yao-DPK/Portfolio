@@ -7,7 +7,7 @@
       "title": "OBC – Plateforme de gestion du centre de basket",
       "description": "Plateforme tout-en-un pour la gestion des inscriptions, documents, paiements et suivi des joueurs.",
       "tags": ["React", "TypeScript", "Node.js", "Express", "PostgreSQL", "Tailwind CSS", "Framer Motion", "Shadcn/ui", "Zustand"],
-      "status": "En production",
+      "status": "En développement",
       "visibility": "private",
       "year": "2024",
       "type": "Projet professionnel",
@@ -17,20 +17,21 @@
       "links": { "live": null, "demo": null, "source": null }
     },
     {
-      "id": "feedback-ia-amiad",
-      "title": "Plateforme de Feedback sur Prédictions IA",
-      "description": "Plateforme Angular/FastAPI pour collecter et analyser le feedback utilisateur sur prédictions IA.",
-      "tags": ["Angular", "FastAPI", "PostgreSQL", "Docker", "Swagger"],
+      "id": "ios-payment-system",
+      "title": "Système de Paiement iOS (Stripe + RevenueCat)",
+      "description": "Backend Node.js pour gestion des abonnements iOS.",
+      "tags": ["Node.js", "MySQL", "Stripe", "RevenueCat", "Webhooks", "React"],
       "status": "En production",
       "visibility": "private",
       "year": "2025",
       "type": "Projet professionnel",
-      "image": "/images/projects/feedback-ia-cover.jpg",
+      "image": "/images/projects/ios-payment-cover.jpg",
       "screenshots": [
 
       ],
       "links": { "live": null, "demo": null, "source": null }
     },
+    
     {
       "id": "ai-assistant-saas",
       "title": "Assistant IA pour Plateforme SaaS",
@@ -47,11 +48,26 @@
       "links": { "live": null, "demo": null, "source": null }
     },
     {
+      "id": "feedback-ia-amiad",
+      "title": "Plateforme de Feedback sur Prédictions IA",
+      "description": "Plateforme Angular/FastAPI pour collecter et analyser le feedback utilisateur sur prédictions IA.",
+      "tags": ["Angular", "FastAPI", "PostgreSQL", "Docker", "Swagger"],
+      "status": "Archivé",
+      "visibility": "private",
+      "year": "2025",
+      "type": "Projet professionnel",
+      "image": "/images/projects/feedback-ia-cover.jpg",
+      "screenshots": [
+
+      ],
+      "links": { "live": null, "demo": null, "source": null }
+    },
+    {
       "id": "association-manager",
       "title": "Web App de Gestion d'Association",
       "description": "Application complète pour gérer membres, projets, rôles et documents.",
       "tags": ["NestJS", "Angular", "TypeScript", "PostgreSQL", "Docker", "GitHub Actions", "Prometheus", "SonarQube"],
-      "status": "En production",
+      "status": "Archivé",
       "visibility": "private",
       "year": "2025",
       "type": "Projet personnel",
@@ -101,21 +117,6 @@
       "year": "2024",
       "type": "Projet personnel",
       "image": "/images/projects/multiplayer-game-cover.jpg",
-      "screenshots": [
-
-      ],
-      "links": { "live": null, "demo": null, "source": null }
-    },
-    {
-      "id": "ios-payment-system",
-      "title": "Système de Paiement iOS (Stripe + RevenueCat)",
-      "description": "Backend Node.js pour gestion des abonnements iOS.",
-      "tags": ["Node.js", "MySQL", "Stripe", "RevenueCat", "Webhooks", "React"],
-      "status": "En production",
-      "visibility": "private",
-      "year": "2025",
-      "type": "Projet professionnel",
-      "image": "/images/projects/ios-payment-cover.jpg",
       "screenshots": [
 
       ],

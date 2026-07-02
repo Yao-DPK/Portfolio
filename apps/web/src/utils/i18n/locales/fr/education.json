@@ -1,0 +1,42 @@
+{
+  "title": "🎓 Parcours académique",
+  "description": "Un parcours d'excellence entre la Côte d'Ivoire et la France",
+  "items": [
+    {
+      "period": "2021 – 2025",
+      "title": "Diplôme d'Ingénieur en Informatique",
+      "subtitle": "Systèmes d'Information",
+      "school": "INP-HB (Côte d'Ivoire) & ESIR - Université de Rennes 1 (France)",
+      "location": "Yamoussoukro / Rennes",
+      "description": "Formation d'ingénieur orientée systèmes d'information, développement logiciel, architecture, méthodes agiles et gestion de projets complexes.",
+      "skills": [
+        "Backend : Java Spring Boot, Node.js, NestJS, Python FastAPI",
+        "Frontend : Angular, React, Flutter",
+        "Architectures : microservices, pipelines data, temps réel WebSockets",
+        "Bases de données : PostgreSQL, MySQL, Firebase Firestore",
+        "DevOps : Docker, CI/CD (GitHub Actions, GitLab CI), Prometheus, SonarQube",
+        "IA & Data : TensorFlow (RNN), preprocessing de signaux, optimisation Hyperparams",
+        "Méthodologies : Agile/Scrum, tests unitaires & e2e"
+      ],
+      "projects": [
+        "Classification d'arythmies cardiaques (TensorFlow, RNN)",
+        "Plateforme web de feedback IA (Angular + FastAPI + PostgreSQL)",
+        "Jeu multijoueur temps réel en Python (networking avancé)"
+      ]
+    },
+    {
+      "period": "2019 – 2021",
+      "title": "Classes Préparatoires aux Grandes Écoles",
+      "subtitle": "Filière MPSI",
+      "school": "INP-HB - Classes Préparatoires aux Grandes Écoles (CPGE)",
+      "location": "Yamoussoukro, Côte d'Ivoire",
+      "description": "Formation intensive en Mathématiques, Physique et Sciences de l'Ingénieur, préparant aux concours d'entrée des Grandes Écoles d'ingénieurs.",
+      "skills": [
+        "Mathématiques approfondies",
+        "Physique et Sciences de l'ingénieur",
+        "Préparation aux concours (CCINP, e3a, Mines-Ponts)"
+      ],
+      "projects": []
+    }
+  ]
+}
