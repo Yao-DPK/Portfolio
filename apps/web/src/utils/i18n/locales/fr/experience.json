@@ -3,7 +3,32 @@
   "subtitle": "Parcours professionnel",
   "items": [
     {
-      "title": "Stagiaire Développeur Fullstack",
+      "title": "Développeur Fullstack - Freelance",
+      "company": "OBC",
+      "period": "Mars 2026 – Sept. 2026",
+      "description": "Plateforme SaaS de gestion pour un centre sportif de 200+ membres.",
+      "achievements": [
+        "Création d'une plateforme SaaS permettant à un centre sportif de gérer ses 200 membres, avec API REST sécurisées (JWT + refresh tokens) et gestion multi-rôles.",
+        "Conception d'un système de gestion documentaire et de paiement : upload AWS S3, URLs signées, workflow de validation (obligations et intentions de paiement).",
+        "Mise en place d'un environnement conteneurisé et d'un déploiement automatisé (Docker, CI/CD via GitHub Actions) pour le front React et l'API NestJS sur Hostinger.",
+        "Utilisation quotidienne d'assistants IA (Claude, OpenAI) pour accélérer le développement, la revue de code et les tests."
+      ],
+      "tags": ["TypeScript", "React", "Node.js", "NestJS", "PostgreSQL", "Docker", "AWS S3", "GitHub Actions", "RabbitMQ"]
+    },
+    {
+      "title": "Développeur Fullstack - Freelance",
+      "company": "GMA",
+      "period": "Nov. 2025 – Mars 2026",
+      "description": "Traçabilité industrielle et outils internes pour les équipes opérationnelles.",
+      "achievements": [
+        "Développement de deux prototypes métiers : traçabilité des produits finis et planification des entretiens, en React et NestJS.",
+        "Conception des échanges entre applications et base de données : API REST et modélisation PostgreSQL.",
+        "Automatisation des tâches répétitives : notifications, emails et génération de rapports journaliers."
+      ],
+      "tags": ["React", "TypeScript", "NestJS", "PostgreSQL", "GitHub"]
+    },
+    {
+      "title": "Développeur Fullstack - Stage",
       "company": "ID Protect",
       "period": "Mar 2025 – Sep 2025",
       "description": "Startup spécialisée dans la gestion d'identité numérique et la sécurité des parcours digitaux.",
@@ -16,7 +41,7 @@
       "tags": ["Node.js", "React", "TypeScript", "WebSockets", "OpenAI", "Stripe"]
     },
     {
-      "title": "Stagiaire Développeur Web et Mobile",
+      "title": "Développeur Fullstack - Stage",
       "company": "Linking Industrie et Developpement",
       "period": "Juin 2024 – Sep 2024",
       "description": "Développement web & mobile pour des solutions de linking industriel.",

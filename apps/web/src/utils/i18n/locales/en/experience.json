@@ -3,7 +3,32 @@
   "subtitle": "Career path",
   "items": [
     {
-      "title": "Fullstack Developer Intern",
+      "title": "Fullstack Developer - Freelance",
+      "company": "OBC",
+      "period": "Mar 2026 – Sep 2026",
+      "description": "SaaS platform for managing a sports center with 200+ members.",
+      "achievements": [
+        "Built a SaaS platform for a sports center to manage 200 members, with secure REST APIs (JWT + refresh tokens) and multi-role management.",
+        "Designed a document and payment system: AWS S3 upload, signed URLs, validation workflow for obligations and payment intents.",
+        "Set up a containerized environment and automated deployment (Docker, CI/CD with GitHub Actions) for React front-end and NestJS API on Hostinger.",
+        "Used AI assistants (Claude, OpenAI) daily to accelerate development, code review, and testing."
+      ],
+      "tags": ["TypeScript", "React", "Node.js", "NestJS", "PostgreSQL", "Docker", "AWS S3", "GitHub Actions", "RabbitMQ"]
+    },
+    {
+      "title": "Fullstack Developer - Freelance",
+      "company": "GMA",
+      "period": "Nov 2025 – Mar 2026",
+      "description": "Industrial traceability and internal tools for operations teams.",
+      "achievements": [
+        "Developed two business prototypes: finished product traceability and interview scheduling, using React and NestJS.",
+        "Designed data exchanges between applications and the database: REST APIs and PostgreSQL data modeling.",
+        "Automated repetitive tasks: notifications, emails, and daily report generation."
+      ],
+      "tags": ["React", "TypeScript", "NestJS", "PostgreSQL", "GitHub"]
+    },
+    {
+      "title": "Fullstack Developer - Internship",
       "company": "ID Protect",
       "period": "Mar 2025 – Sep 2025",
       "description": "Startup specializing in digital identity management and digital journey security.",
@@ -16,7 +41,7 @@
       "tags": ["Node.js", "React", "TypeScript", "WebSockets", "OpenAI", "Stripe"]
     },
     {
-      "title": "Web and Mobile Developer Intern",
+      "title": "Web and Mobile Developer - Internship",
       "company": "Linking Industrie et Developpement",
       "period": "Jun 2024 – Sep 2024",
       "description": "Web & mobile development for industrial linking solutions.",
