@@ -15,6 +15,8 @@ interface EducationItemProps {
 }
 
 function EducationItem({ period, title, subtitle, school, location, description, skills, projects }: EducationItemProps) {
+    const { t } = useTranslation('education');
+
   return (
     <div className="relative flex flex-col md:flex-row gap-4 md:gap-8">
       {/* Point sur la timeline */}
@@ -67,7 +69,7 @@ function EducationItem({ period, title, subtitle, school, location, description,
         {skills.length > 0 && (
           <div className="mb-4">
             <p className="text-xs font-semibold text-[var(--text-secondary)] uppercase tracking-wider mb-2">
-              Compétences développées
+              {t('ui_items.skills_title')}
             </p>
             <div className="flex flex-wrap gap-1.5">
               {skills.map((skill) => (
@@ -86,7 +88,7 @@ function EducationItem({ period, title, subtitle, school, location, description,
         {projects.length > 0 && (
           <div>
             <p className="text-xs font-semibold text-[var(--text-secondary)] uppercase tracking-wider mb-2">
-              Projets académiques clés
+              {t('ui_items.project_title')}
             </p>
             <ul className="list-disc list-inside space-y-1 text-sm text-[var(--text-secondary)]">
               {projects.map((project) => (

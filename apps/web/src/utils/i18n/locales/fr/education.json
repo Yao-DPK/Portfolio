@@ -1,6 +1,10 @@
 {
   "title": "🎓 Parcours académique",
   "description": "Un parcours d'excellence entre la Côte d'Ivoire et la France",
+  "ui_items": {
+    "skills_title": "Compétences développées",
+    "project_title": "Projets académiques clés"
+  }, 
   "items": [
     {
       "period": "2021 – 2025",

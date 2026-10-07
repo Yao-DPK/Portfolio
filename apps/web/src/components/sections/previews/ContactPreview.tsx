@@ -31,22 +31,22 @@ export default function ContactPreview() {
       icon: <EmailIcon />,
       label: 'email',
       value: 'yao.konan2709@email.com',
-      href: 'mailto:yaokonan@email.com',
-      action: '📧 Envoyer un email',
+      href: t('info.email.href'),
+      action: t('info.email.action'),
     },
     {
       icon: <GitHubIcon />,
       label: 'github',
       value: 'github.com/yaokonan',
-      href: 'https://github.com/yaokonan',
-      action: '🐙 Voir le profil',
+      href: t('info.github.href'),
+      action: t('info.github.action'),
     },
     {
       icon: <LinkedInIcon />,
       label: 'linkedin',
       value: 'linkedin.com/in/yaokonan',
-      href: 'https://linkedin.com/in/yaokonan',
-      action: '🔗 Voir le profil',
+      href: t('info.linkedin.href'),
+      action: t('info.linkedin.action'),
     },
   ];
 

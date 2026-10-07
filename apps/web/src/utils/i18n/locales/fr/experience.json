@@ -3,7 +3,7 @@
   "subtitle": "Parcours professionnel",
   "items": [
     {
-      "title": "Software Engineer Intern",
+      "title": "Stagiaire Développeur Fullstack",
       "company": "ID Protect",
       "period": "Mar 2025 – Sep 2025",
       "description": "Startup spécialisée dans la gestion d'identité numérique et la sécurité des parcours digitaux.",
@@ -16,7 +16,7 @@
       "tags": ["Node.js", "React", "TypeScript", "WebSockets", "OpenAI", "Stripe"]
     },
     {
-      "title": "Fullstack Developer",
+      "title": "Stagiaire Développeur Web et Mobile",
       "company": "Linking Industrie et Developpement",
       "period": "Juin 2024 – Sep 2024",
       "description": "Développement web & mobile pour des solutions de linking industriel.",

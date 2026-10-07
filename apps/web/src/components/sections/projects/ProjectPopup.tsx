@@ -1,4 +1,3 @@
-// components/projects/ProjectPopup.tsx
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -18,6 +17,7 @@ export function ProjectPopup({ project, onClose }: ProjectPopupProps) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
+  const [showVideo, setShowVideo] = useState(false);
 
   const details = t(project.id, { returnObjects: true }) as any;
 
@@ -25,6 +25,7 @@ export function ProjectPopup({ project, onClose }: ProjectPopupProps) {
     ...project,
     descriptionLong: details?.descriptionLong || project.description,
     screenshots: details?.screenshots || project.screenshots || [],
+    videos: details?.videos || project.videos || [],
     tabs: details?.tabs || project.tabs || { objectives: [], techStack: [], features: [], metrics: [] },
     links: details?.links || project.links || {},
     status: details?.status || project.status,
@@ -33,13 +34,27 @@ export function ProjectPopup({ project, onClose }: ProjectPopupProps) {
     type: details?.type || project.type,
   };
 
-  const { id, title, descriptionLong, screenshots, tabs, links, status, visibility, year, type } = fullProject;
+  const {
+    id,
+    title,
+    descriptionLong,
+    screenshots,
+    videos,
+    tabs,
+    links,
+    status,
+    visibility,
+    year,
+    type,
+  } = fullProject;
 
   const tabData = tabs?.[activeTab] || [];
   const displayItems = isExpanded ? tabData : tabData.slice(0, 3);
   const hasMore = tabData.length > 3;
 
   const hasScreenshots = screenshots && screenshots.length > 0;
+  const hasVideos = videos && videos.length > 0;
+  const hasMedia = hasScreenshots || hasVideos;
   const hasDemo = links?.demo || links?.live;
   const hasSource = links?.source;
 
@@ -56,6 +71,9 @@ export function ProjectPopup({ project, onClose }: ProjectPopupProps) {
   const visColor = visibility === 'public' ? 'text-blue-400 border-blue-500/40' : 'text-slate-400 border-slate-500/40';
   const visLabel = visibility === 'public' ? 'PUBLIC' : 'PRIVÉ';
 
+  // Total media count
+  const totalMedia = (screenshots?.length || 0) + (videos?.length || 0);
+
   useEffect(() => {
     setIsOpen(true);
     document.body.style.overflow = 'hidden';
@@ -69,17 +87,30 @@ export function ProjectPopup({ project, onClose }: ProjectPopupProps) {
     setTimeout(onClose, 300);
   };
 
-  const nextImage = () => {
-    if (screenshots) {
-      setCurrentImageIndex((prev) => (prev + 1) % screenshots.length);
-    }
+  const nextMedia = () => {
+    if (totalMedia === 0) return;
+    setCurrentImageIndex((prev) => (prev + 1) % totalMedia);
+    setShowVideo(false);
   };
 
-  const prevImage = () => {
-    if (screenshots) {
-      setCurrentImageIndex((prev) => (prev - 1 + screenshots.length) % screenshots.length);
-    }
+  const prevMedia = () => {
+    if (totalMedia === 0) return;
+    setCurrentImageIndex((prev) => (prev - 1 + totalMedia) % totalMedia);
+    setShowVideo(false);
   };
+
+  const getCurrentMedia = () => {
+    if (screenshots && currentImageIndex < screenshots.length) {
+      return { type: 'image' as const, src: screenshots[currentImageIndex] };
+    }
+    const videoIndex = currentImageIndex - (screenshots?.length || 0);
+    if (videos && videoIndex < videos.length) {
+      return { type: 'video' as const, src: videos[videoIndex] };
+    }
+    return null;
+  };
+
+  const currentMedia = getCurrentMedia();
 
   return (
     <div
@@ -90,7 +121,7 @@ export function ProjectPopup({ project, onClose }: ProjectPopupProps) {
       onClick={handleClose}
     >
       <div
-        className="relative bg-[var(--card-background)] rounded-xl max-w-3xl w-full max-h-[85vh] overflow-y-auto shadow-2xl border border-[var(--card-border)]"
+        className="relative bg-[var(--card-background)] rounded-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-[var(--card-border)]"
         onClick={(e) => e.stopPropagation()}
       >
         {/* En-tête */}
@@ -109,42 +140,59 @@ export function ProjectPopup({ project, onClose }: ProjectPopupProps) {
           </button>
         </div>
 
-        {/* ✅ Carousel - uniquement si des screenshots existent */}
-        {hasScreenshots && (
+        {/* ✅ Carousel - images + vidéos */}
+        {hasMedia && currentMedia && (
           <div className="px-4 pt-4 flex justify-center">
             <div className="w-full max-w-2xl">
-              <div className="relative aspect-[16/9] max-h-[220px] bg-[var(--card-border)]/30 overflow-hidden rounded-lg mx-auto">
-                <Image
-                  src={screenshots[currentImageIndex]}
-                  alt={`Screenshot ${currentImageIndex + 1}`}
-                  fill
-                  className="object-cover"
-                />
-                {screenshots.length > 1 && (
+              <div className="relative aspect-[16/9] max-h-[280px] bg-[var(--card-border)]/30 overflow-hidden rounded-lg mx-auto">
+                {currentMedia.type === 'image' ? (
+                  <Image
+                    src={currentMedia.src}
+                    alt={`Media ${currentImageIndex + 1}`}
+                    fill
+                    className="object-contain"
+                  />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center bg-black/50">
+                    <video
+                      src={currentMedia.src}
+                      controls
+                      className="w-full h-full object-contain"
+                      autoPlay={false}
+                    />
+                  </div>
+                )}
+                {totalMedia > 1 && (
                   <>
                     <button
-                      onClick={prevImage}
+                      onClick={prevMedia}
                       className="absolute left-2 top-1/2 -translate-y-1/2 p-1.5 rounded-full bg-black/50 text-white hover:bg-black/70 transition-colors text-sm"
                     >
                       ◄
                     </button>
                     <button
-                      onClick={nextImage}
+                      onClick={nextMedia}
                       className="absolute right-2 top-1/2 -translate-y-1/2 p-1.5 rounded-full bg-black/50 text-white hover:bg-black/70 transition-colors text-sm"
                     >
                       ►
                     </button>
                     <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1">
-                      {screenshots.map((_: any, idx: any) => (
+                      {Array.from({ length: totalMedia }).map((_, idx) => (
                         <button
                           key={idx}
-                          onClick={() => setCurrentImageIndex(idx)}
+                          onClick={() => {
+                            setCurrentImageIndex(idx);
+                            setShowVideo(idx >= (screenshots?.length || 0));
+                          }}
                           className={`w-1.5 h-1.5 rounded-full transition-all ${
                             idx === currentImageIndex ? 'bg-white w-3' : 'bg-white/40 hover:bg-white/60'
                           }`}
-                          aria-label={`Image ${idx + 1}`}
+                          aria-label={`Media ${idx + 1}`}
                         />
                       ))}
+                    </div>
+                    <div className="absolute top-2 right-2 bg-black/50 text-white text-[10px] px-2 py-0.5 rounded font-mono">
+                      {currentImageIndex + 1} / {totalMedia}
                     </div>
                   </>
                 )}

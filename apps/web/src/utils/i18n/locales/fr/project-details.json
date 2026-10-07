@@ -5,6 +5,8 @@
     "image": "/images/projects/obc-cover.jpg",
     "screenshots": [
     ],
+    "videos": [
+    ],
     "status": "En production",
     "visibility": "private",
     "year": "2024",
@@ -51,6 +53,8 @@
     "screenshots": [
 
     ],
+    "videos": [
+    ],
     "status": "En production",
     "visibility": "private",
     "year": "2025",
@@ -91,6 +95,8 @@
     "screenshots": [
 
     ],
+    "videos": [
+    ],
     "status": "En production",
     "visibility": "private",
     "year": "2025",
@@ -129,6 +135,8 @@
     "descriptionLong": "Application web complète pour la gestion d'associations : utilisateurs, projets, équipes et documents. Architecture microservices avec CI/CD, monitoring et analyse qualité.",
     "image": "/images/projects/association-manager-cover.jpg",
     "screenshots": [
+    ],
+    "videos": [
     ],
     "status": "En production",
     "visibility": "private",
@@ -174,6 +182,8 @@
     "screenshots": [
 
     ],
+    "videos": [
+    ],
     "status": "Archivé",
     "visibility": "private",
     "year": "2024",
@@ -213,6 +223,8 @@
     "image": "/images/projects/music-streaming-cover.jpg",
     "screenshots": [
 
+    ],
+    "videos": [
     ],
     "status": "En développement",
     "visibility": "private",
@@ -254,11 +266,15 @@
     "screenshots": [
 
     ],
+    
+    "videos": [
+    ],
     "status": "Archivé",
     "visibility": "private",
     "year": "2024",
     "type": "Projet personnel",
     "links": { "live": null, "demo": null, "source": null },
+    
     "tabs": {
       "objectives": [
         "Créer un jeu multijoueur avec synchronisation temps réel fiable",

@@ -41,10 +41,10 @@
       "action": "View Profile"
     },
     "availability": "Available for opportunities",
-    "contact": "Contact",
+    "contact": "Contact Me",
     "follow": "Follow",
-    "contactAction": "Contact",
-    "cvAction": "Resume",
-    "projectsAction": "Projects"
+    "contactAction": "Contact Me",
+    "cvAction": "Download My Resume",
+    "projectsAction": "View My Projects"
   }
 }

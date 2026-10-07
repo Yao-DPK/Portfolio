@@ -41,10 +41,10 @@
       "action": "Voir le Profil"
     },
     "availability": "Disponible pour des opportunités",
-    "contact": "Contacter",
+    "contact": "Contactez-moi",
     "follow": "Suivre",
-    "contactAction": "Contact",
-    "cvAction": "CV",
-    "projectsAction": "Projets"
+    "contactAction": "Contactez-moi",
+    "cvAction": "Télécharger mon CV",
+    "projectsAction": "Voir mes Projets"
   }
 }

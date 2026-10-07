@@ -1,6 +1,10 @@
 {
   "title": "🎓 Academic Background",
   "description": "A journey of excellence between Côte d'Ivoire and France",
+  "ui_items": {
+    "skills_title": "Obtained Skills",
+    "project_title": "Key Projects"
+  }, 
   "items": [
     {
       "period": "2021 – 2025",
